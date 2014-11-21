@@ -6,5 +6,7 @@ class User
 public:
 	char* firstName;
 	char* name;
-	char* 
-}
+	char* password;
+	char* login;
+	char* email;
+};
