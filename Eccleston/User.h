@@ -1,27 +1,32 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef USER_H
+#define USER_H
 
 #include <iostream>
 using namespace std;
 
 class User{
 public:
-	User();
-
-	char* getFirstName() const{ return this->firstName; }
-	char* getName() const { return this->name; }
-	char* getPassword() const{ return this->password; }
-	char* getLogin() const{ return this->login; }
-	char* getEmail() const{ return this->email; }
-
+	User(string, string, string, string, string);
+	int checkEMail();
+	string getEmail() const{ return this->email; }
+	string getFirstName() const{ return this->firstName; }
+	string getLogin() const{ return this->login; }
+	string getName() const { return this->name; }
+	string getPassword() const{ return this->password; }
+	int getUserType();
+	void setFirstName(string);
+	void setLogin(string);
+	void setName(string);
+	void setPassword(string);
+	void setUserType(string);
 	~User();
 
 protected:
-	char* firstName;
-	char* name;
-	char* password;
-	char* login;
-	char* email;
+	string firstName;
+	string name;
+	string password;
+	string login;
+	string email;
 };
 
 #endif
