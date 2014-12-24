@@ -1,19 +1,16 @@
 #include<iostream>
+#include "User.h"
+#include <string>
 
-class User
-{
+User::User(string name, string firstName, string login, string password, string email){
 
-public:
-	char* getFirstName() const{ return this->firstName; }
-	char* getName() const { return this->name; }
-	char* getPassword() const{ return this->password; }
-	char* getLogin() const{ return this->login; }
-	char* getEmail() const{ return this->email; }
+	this->name = name;
+	this->firstName = firstName;
+	this->login = login;
+	this->password = password;
+	this->email = email;
+}
 
-protected :
-	char* firstName;
-	char* name;
-	char* password;
-	char* login;
-	char* email;
-};
+int::checkEmail(){
+
+}
