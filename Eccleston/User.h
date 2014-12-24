@@ -7,7 +7,7 @@ using namespace std;
 class User{
 public:
 	User(string, string, string, string, string);
-	int checkEMail();
+	int checkEmail();
 	string getEmail() const{ return this->email; }
 	string getFirstName() const{ return this->firstName; }
 	string getLogin() const{ return this->login; }
