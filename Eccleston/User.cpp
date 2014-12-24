@@ -38,3 +38,6 @@ int::checkEmail(){
 
 }
 
+int::getUserType(){
+
+}
