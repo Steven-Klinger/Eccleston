@@ -2,7 +2,6 @@
 #include "User.h"
 #include <string>
 
-using namespace std;
 
 User::User(string name, string firstName, string login, string password, string email){
 
@@ -13,31 +12,35 @@ User::User(string name, string firstName, string login, string password, string 
 	this->email = email;
 }
 
-void::setName(string s){
+void User::setName(string s){
 	name = s;
 }
 
 
-void::setFirstName(string s){
+void User::setFirstName(string s){
 	firstName = s;
 }
 
-void::setLogin(string s){
+void User::setLogin(string s){
 	login = s;
 }
 
-void::setPassword(string s){
+void User::setPassword(string s){
 	password = s;
 }
 
-void::setEmail(string s){
+void User::setEmail(string s){
 	email = s;
 }
 
-int::checkEmail(){
-
+int User::checkEmail(){
+	return 0;
 }
 
-int::getUserType(){
+int User::getUserType(){
+	return 0;
+}
+
+User::~User(){
 
 }

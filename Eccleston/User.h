@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <iostream>
+using namespace std;
 
 class User{
 public:
@@ -13,6 +14,7 @@ public:
 	string getName() const { return this->name; }
 	string getPassword() const{ return this->password; }
 	int getUserType();
+	void setEmail(string);
 	void setFirstName(string);
 	void setLogin(string);
 	void setName(string);
