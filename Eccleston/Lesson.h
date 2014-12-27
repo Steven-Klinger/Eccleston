@@ -8,19 +8,46 @@ class Lesson
 {
 
 public:
+	Lesson(string, tm, tm, int);
 	Lesson(string, int);
 
-	string getName() const { return this->name; }
-	void setName(string newName) { name = newName; }
+	//void addResource(Resource);
+	//void addStudent(Student);
+	//void addStudentMainList(Student);
+	//void addStudentSecondaryList(Student);
+	int checkDate(tm);
+	int checkFile(string);
+	int checkRepository(string);
+	int checkResourceName(string);
+	int checkUrl(string);
+	tm getDateBegin() const { return this->dateBegin; }
+	tm getDateEnd() const { return this->dateEnd; }
 	int getMaxStudents() const{ return this->maxStudents; }
-	void setMawStudent(int newMax) { maxStudents = newMax; }
-	int isValidate() const{ return this->validate; }
-	void setValidate(int isValidate) { validate = isValidate; }
+	string getName() const { return this->name; }
+	// Resource getResource(int);
+	// Resource* getResources();
+	// Student getStudentSecondaryList(int);
+	// Student* getStudents();
+	// Teacher getTeacher();
+	// int isMainListFull();
+	// int isStudentMainList(Student);
+	int isValidated() const { return validate; }
+	// void removeResource(Resource);
+	// void removeStudent(Student);
+	// void removeStudentMainList(Student);
+	// void removeStudentSecondaryList(Student);
+	void setDateBegin(tm dateBegin) { this->dateBegin = dateBegin; }
+	void setDateEnd(tm dateEnd) { this->dateEnd = dateEnd; }
+	void setMaxStudent(int maxStudent) { this->maxStudents = maxStudent; }
+	void setName(string name) { this->name = name; }
+	void setValidate(int validate) { this->validate = validate; }
 
 	~Lesson();
 
 protected:
 	string name;
+	tm dateBegin;
+	tm dateEnd;
 	int validate;
 	int maxStudents;
 };
