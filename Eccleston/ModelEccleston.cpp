@@ -1,6 +1,6 @@
 #include "ModelEccleston.h"
 
-
+/*
 ModelEccleston::ModelEccleston()
 {
 	// un peu bloqué là
@@ -50,7 +50,7 @@ User ModelEccleston::getAdmin(){
 	int i = 0;
 	User admin;
 	for (i; i < 100; i++){
-		if (this->listUsers[i].getUserType == 1){
+		if (listUsers[i].getUserType == 1){
 			admin = this->listUsers[i];
 		}
 	}
@@ -95,3 +95,4 @@ void ModelEccleston::removeUser(User user){
 void ModelEccleston::setUser(int id, User user){
 
 }
+*/

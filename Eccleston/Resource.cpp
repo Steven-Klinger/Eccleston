@@ -7,3 +7,8 @@ Resource::Resource(string name, tm dateCreation, int visible){
 	this->dateCreation = dateCreation;
 	this->visible = visible;
 }
+
+
+Resource::~Resource(){
+
+}

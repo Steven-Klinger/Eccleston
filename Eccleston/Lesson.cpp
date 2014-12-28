@@ -6,6 +6,10 @@
 Lesson::Lesson(){
 }
 
+Lesson::~Lesson(){
+
+}
+
 Lesson::Lesson(string name, tm dateBegin, tm dateEnd, int maxStudents){
 	this->name = name;
 	this->dateBegin = dateBegin;
