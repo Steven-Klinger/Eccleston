@@ -4,8 +4,9 @@
 ModelEccleston::ModelEccleston()
 {
 	// un peu bloqué là
-	
-
+	Lesson* listLesson = new Lesson[100]; // je sais pas trop comment faire pour la taille peut etre utiliser vector
+	User* listUser = new User[100];
+	User currentUser;
 }
 
 
@@ -13,70 +14,84 @@ ModelEccleston::~ModelEccleston()
 {
 }
 
-void addLesson(Lesson lesson){
+void ModelEccleston::addLesson(Lesson lesson){
 	
 }
 
-void addUser(User user){
+void ModelEccleston::addUser(User user){
 
 }
 
-bool checkDate(tm date1, tm date2){
+bool ModelEccleston::checkDate(tm date1, tm date2){
 	return true;
 }
 
-bool checkEMailAvailable(string email){
+bool ModelEccleston::checkEMailAvailable(string email){
 	return true;
 }
 
-bool checkLesson(string lesson){
+bool ModelEccleston::checkLesson(string lesson){
 	return true;
 }
 
-bool checkLogin(string login){
+bool ModelEccleston::checkLogin(string login){
 	return true;
 }
 
-bool checkLoginAvailable(string login){
+bool ModelEccleston::checkLoginAvailable(string login){
 	return true;
 }
 
-bool checkNameAvailable(string s1, string s2){
+bool ModelEccleston::checkNameAvailable(string s1, string s2){
 	return true;
 }
 
-User getAdmin(){
-	return ;
+User ModelEccleston::getAdmin(){
+	int i = 0;
+	User admin;
+	for (i; i < 100; i++){
+		if (this->listUsers[i].getUserType == 1){
+			admin = this->listUsers[i];
+		}
+	}
+	return admin;
 }
 
-User getCurrentUser(){
+User ModelEccleston::getCurrentUser(){
+	return this->currentUser;
+}
+
+Lesson* ModelEccleston::getOpenLesson(){
+	return this->listLesson; // A MODIFIER !!!
+}
+
+User ModelEccleston::getUser(int i){
+	return this->listUsers[i];
+}
+
+User ModelEccleston::getUserByLogin(string login){
+	int i = 0;
+	User usr;
+	for (i; i < 100; i++){
+		if ((string)this->listUsers[i].getLogin == "login"){
+			usr = this->listUsers[i];
+		}
+	}
+	return usr;
+}
+
+Lesson* ModelEccleston::getWaitingLessons(){
+	return this->listLesson; // A MODIFIER !!!
+}
+
+void ModelEccleston::removeLesson(Lesson lesson){
+	// à faire
+}
+
+void ModelEccleston::removeUser(User user){
 
 }
 
-Lesson* getOpenLesson(){
-
-}
-
-User getUser(int i){
-
-}
-
-User getUserByLogin(string login){
-
-}
-
-Lesson* getWaitingLessons(){
-
-}
-
-void removeLesson(Lesson lesson){
-
-}
-
-void removeUser(User user){
-
-}
-
-void setUser(int id, User user){
+void ModelEccleston::setUser(int id, User user){
 
 }
