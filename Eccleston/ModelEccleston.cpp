@@ -1,6 +1,6 @@
 #include "ModelEccleston.h"
 
-/*
+
 ModelEccleston::ModelEccleston()
 {
 	// un peu bloqué là
@@ -15,27 +15,61 @@ ModelEccleston::~ModelEccleston()
 }
 
 void ModelEccleston::addLesson(Lesson lesson){
+	int i = 0;
 	
+	while (listLesson[i].getName() != ""){ //A lesson is init by default with a "" name
+		i++;
+	}
+	listLesson[i] = lesson;
 }
 
 void ModelEccleston::addUser(User user){
+	int i = 0;
 
+	while (listUsers[i].getName() != ""){ //A lesson is init by default with a "" name
+		i++;
+	}
+	listUsers[i] = user;
 }
 
 bool ModelEccleston::checkDate(tm date1, tm date2){
-	return true;
+	return (date1.tm_year+date1.tm_mon+date1.tm_mday+date1.tm_hour+date1.tm_min+date1.tm_sec) < 
+		(date2.tm_year + date2.tm_mon + date2.tm_mday + date2.tm_hour + date2.tm_min + date2.tm_sec);
 }
 
+/*Renvoie vrai si l'email n'est pas déjà pris */
 bool ModelEccleston::checkEMailAvailable(string email){
-	return true;
+	int i = 0;
+	bool emailCheck = true;
+	for (i; i < 100; i++){
+		if (listUsers[i].getEmail() == email){
+			emailCheck = false;
+		}
+	}
+	return emailCheck;
 }
+
 
 bool ModelEccleston::checkLesson(string lesson){
-	return true;
+	int i = 0;
+	bool lessonCheck = true;
+	for (i; i < 100; i++){
+		if (listLesson[i].getName() == lesson){
+			lessonCheck = false;
+		}
+	}
+	return lessonCheck;
 }
 
 bool ModelEccleston::checkLogin(string login){
-	return true;
+	int i = 0;
+	bool loginCheck = true;
+	for (i; i < 100; i++){
+		if (listUsers[i].getLogin() == login){
+			loginCheck = false;
+		}
+	}
+	return loginCheck;
 }
 
 bool ModelEccleston::checkLoginAvailable(string login){
@@ -50,7 +84,7 @@ User ModelEccleston::getAdmin(){
 	int i = 0;
 	User admin;
 	for (i; i < 100; i++){
-		if (listUsers[i].getUserType == 1){
+		if (listUsers[i].getUserType() == 1){
 			admin = this->listUsers[i];
 		}
 	}
@@ -73,7 +107,7 @@ User ModelEccleston::getUserByLogin(string login){
 	int i = 0;
 	User usr;
 	for (i; i < 100; i++){
-		if ((string)this->listUsers[i].getLogin == "login"){
+		if ((string)this->listUsers[i].getLogin() == "login"){
 			usr = this->listUsers[i];
 		}
 	}
@@ -95,4 +129,3 @@ void ModelEccleston::removeUser(User user){
 void ModelEccleston::setUser(int id, User user){
 
 }
-*/
