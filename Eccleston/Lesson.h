@@ -10,6 +10,7 @@ class Lesson
 public:
 	Lesson(string, tm, tm, int);
 	Lesson(string, int);
+	Lesson();
 
 	//void addResource(Resource);
 	//void addStudent(Student);

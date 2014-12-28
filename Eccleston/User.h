@@ -6,6 +6,7 @@ using namespace std;
 
 class User{
 public:
+	User();
 	User(string, string, string, string, string);
 	int checkEmail();
 	string getEmail() const{ return this->email; }

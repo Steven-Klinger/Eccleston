@@ -3,6 +3,14 @@
 #include <string>
 
 
+User::User(){
+	this->name = "";
+	this->firstName = "";
+	this->login = "";
+	this->password = "";
+	this->email = "";
+}
+
 User::User(string name, string firstName, string login, string password, string email){
 
 	this->name = name;
@@ -11,6 +19,7 @@ User::User(string name, string firstName, string login, string password, string 
 	this->password = password;
 	this->email = email;
 }
+
 
 void User::setName(string s){
 	name = s;
@@ -44,3 +53,4 @@ int User::getUserType(){
 User::~User(){
 
 }
+
