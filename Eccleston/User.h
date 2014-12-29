@@ -1,7 +1,10 @@
 #ifndef USER_H
 #define USER_H
 
+//#include "ModelEccleston.h"
+#include "Notification.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class User{
@@ -29,6 +32,8 @@ protected:
 	string password;
 	string login;
 	string email;
+	std::vector<Notification> listNotification;
+	//ModelEccleston mde;
 };
 
 #endif

@@ -12,7 +12,7 @@ User::User(){
 }
 
 User::User(string name, string firstName, string login, string password, string email){
-
+	
 	this->name = name;
 	this->firstName = firstName;
 	this->login = login;
