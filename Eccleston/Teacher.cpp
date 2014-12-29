@@ -29,7 +29,7 @@ Lesson* getLesson(){
 }
 
 int getUserType(){
-	return 2; // 2 pour teacher ?
+	return 2;
 }
 
 void setLesson(int i, Lesson newLesson){

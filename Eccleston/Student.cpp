@@ -42,7 +42,7 @@ Lesson* Student::getLessons(){
 }
 
 int Student::getUserType(){
-	return 0; // 0 pour student ?
+	return 1; // 0 pour student ?
 }
 
 //Work Student::getWork(int){
