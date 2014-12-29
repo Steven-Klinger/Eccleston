@@ -7,7 +7,7 @@ Lesson::Lesson(){
 }
 
 Lesson::~Lesson(){
-	this->name = "s";
+	this->name = "";
 }
 
 Lesson::Lesson(string name, tm dateBegin, tm dateEnd, int maxStudents){
