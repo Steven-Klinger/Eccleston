@@ -16,7 +16,7 @@ class Teacher : public User
 public:
 	Teacher(string firstName, string name, string password, string login, string email);
 	~Teacher();
-	void addLesson(string name, tm date1, tm date2, int i); // c'est pourquoi déjà le  i?
+	void addLesson(string name, tm date1, tm date2, int maxStudent); 
 	void addNotification(Lesson lesson, bool b1);
 	Lesson* getLesson();
 	int getUserType();
