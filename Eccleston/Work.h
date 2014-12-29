@@ -16,3 +16,5 @@ protected:
 	int corrected;
 	int mark;
 };
+
+#endif
