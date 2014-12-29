@@ -10,6 +10,8 @@
 //TODO #include "Work.h"
 #include <iostream>
 #include <ctime>
+#include <vector>
+#include <algorithm>  // std::for_each
 
 class ModelEccleston
 {
@@ -27,18 +29,18 @@ public:
 	bool checkNameAvailable(string s1, string s2);
 	User getAdmin();
 	User getCurrentUser();
-	Lesson* getOpenLesson();
+	std::vector<Lesson> getOpenLesson();
 	User getUser(int i);
 	User getUserByLogin(string login);
-	Lesson* getWaitingLessons();
+	std::vector<Lesson> getWaitingLessons();
 	void removeLesson(Lesson lesson);
 	void removeUser(User user);
 	void setUser(int id, User user);
 
 private:
 	User currentUser;
-	User* listUsers;
-	Lesson* listLesson;
+	std::vector<User> listUsers;
+	std::vector<Lesson> listLessons;
 };
 
 #endif
