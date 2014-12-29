@@ -12,10 +12,10 @@ public:
 	Lesson(string, int);
 	Lesson();
 
-	//void addResource(Resource);
-	//void addStudent(Student);
-	//void addStudentMainList(Student);
-	//void addStudentSecondaryList(Student);
+//	void addResource(Resource);
+//	void addStudent(Student);
+//	void addStudentMainList(Student);
+//	void addStudentSecondaryList(Student);
 	int checkDate(tm);
 	int checkFile(string);
 	int checkRepository(string);
@@ -29,7 +29,7 @@ public:
 	// Resource* getResources();
 	// Student getStudentSecondaryList(int);
 	// Student* getStudents();
-	// Teacher getTeacher();
+//	Teacher getTeacher() { return teacher; }
 	// int isMainListFull();
 	// int isStudentMainList(Student);
 	int isValidated() const { return validate; }
@@ -41,6 +41,7 @@ public:
 	void setDateEnd(tm dateEnd) { this->dateEnd = dateEnd; }
 	void setMaxStudent(int maxStudent) { this->maxStudents = maxStudent; }
 	void setName(string name) { this->name = name; }
+//	void setTeacher(Teacher teacher) { this->teacher = teacher; }
 	void setValidate(int validate) { this->validate = validate; }
 
 	~Lesson();
@@ -51,6 +52,10 @@ protected:
 	tm dateEnd;
 	int validate;
 	int maxStudents;
+//	vector<Student> MainListUsers;
+//	vector<Student> SecondaryListUsers;
+//	vector<Resource> listResources;
+//	Teacher teacher;
 };
 
 #endif

@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
+
+#include "Resource.h"
+#include "Teacher.h"
+#include "Student.h"
 
 Lesson::Lesson(){
 }
