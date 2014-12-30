@@ -1,5 +1,12 @@
 #include "Teacher.h"
 
+Teacher::Teacher() : User() {
+	this->firstName = "";
+	this->name = "";
+	this->password = "";
+	this->login = "";
+	this->email = "";
+}
 
 Teacher::Teacher(string firstName, string name, string password, string login, string email) : User(firstName, name,
 	password, login, email)

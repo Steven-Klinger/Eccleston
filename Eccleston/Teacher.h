@@ -14,6 +14,7 @@
 class Teacher : public User
 {
 public:
+	Teacher();
 	Teacher(string firstName, string name, string password, string login, string email);
 	~Teacher();
 	void addLesson(string name, tm date1, tm date2, int maxStudent); 
