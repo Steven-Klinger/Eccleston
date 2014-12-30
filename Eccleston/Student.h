@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include "Notification.h"
 //TODO #include "Work.h"
+#include <vector>
 #include <iostream>
 #include <ctime>
 
@@ -23,11 +24,13 @@ public:
 	void addNotification(Lesson); 
 	void addNotification(Resource); 
 	//void addNotification(Work);// à compléter plus tard
-	Lesson* getLessons(); // TODO à vérifier
+	vector<Lesson> getLessons(); // TODO à vérifier
 	int getUserType();
 	//Work getWork(int); 
 	//void setWork(int,Work); // à compléter plus tard
 
+private:
+	vector<Lesson> listLessons;
 };
 
 #endif

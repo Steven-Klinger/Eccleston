@@ -15,7 +15,11 @@ Student::Student(string firstName, string Name, string password, string login, s
 }
 
 Student::Student() : User(){
-
+	this->firstName = "";
+	this->name = "";
+	this->password = "";
+	this->login = "";
+	this->email = "";
 }
 
 Student::~Student()
@@ -24,7 +28,8 @@ Student::~Student()
 
 
 void Student::addLesson(string name, tm date1, tm date2){
-
+	
+	//this->mde.
 }
 
 void Student::addNotification(Lesson lesson){
@@ -40,8 +45,8 @@ void Student::addNotification(Resource res){
 
 //
 
-Lesson* Student::getLessons(){
-	return 0;
+vector<Lesson> Student::getLessons(){
+	return listLessons;
 }
 
 int Student::getUserType(){

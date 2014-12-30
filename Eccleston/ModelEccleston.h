@@ -1,13 +1,13 @@
 #pragma once
 
-#ifndef ADMIN_H
-#define ADMIN_H
+#ifndef MODELECCLESTON_H
+#define MODELECCLESTON_H
 
 #include "User.h"
 #include "Lesson.h"
 #include "Resource.h"
 #include "Notification.h"
-//TODO #include "Work.h"
+//#include "Work.h"
 #include <iostream>
 #include <ctime>
 #include <vector>

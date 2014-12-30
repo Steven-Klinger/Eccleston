@@ -5,6 +5,7 @@
 #include "Notification.h"
 #include <iostream>
 #include <vector>
+class ModelEccleston;
 using namespace std;
 
 class User{
@@ -33,7 +34,7 @@ protected:
 	string login;
 	string email;
 	std::vector<Notification> listNotification;
-	//ModelEccleston mde;
+	ModelEccleston* mde;
 };
 
 #endif

@@ -24,9 +24,9 @@ void addNotification(Lesson lesson, bool b1){
 
 }
 
-Lesson* getLesson(){
-	return 0;
-}
+//vector<Lesson> getLesson(){
+	//return 0;
+//}
 
 int getUserType(){
 	return 2;

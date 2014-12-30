@@ -18,7 +18,7 @@ public:
 	~Teacher();
 	void addLesson(string name, tm date1, tm date2, int maxStudent); 
 	void addNotification(Lesson lesson, bool b1);
-	Lesson* getLesson();
+	vector<Lesson> getLesson();
 	int getUserType();
 	void setLesson(int i, Lesson newLesson);
 };

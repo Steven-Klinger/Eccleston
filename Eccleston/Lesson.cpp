@@ -4,15 +4,19 @@
 #include <ctime>
 #include <vector>
 
-#include "Resource.h"
-#include "Teacher.h"
-#include "Student.h"
+//#include "Resource.h"
+//#include "Teacher.h"
+//#include "Student.h"
 
 Lesson::Lesson(){
+	this->name = "";
+	this->dateBegin = tm();
+	this->dateEnd = tm();
+	this->validate = 0;
+	this->maxStudents = 0;
 }
 
 Lesson::~Lesson(){
-	this->name = "";
 }
 
 Lesson::Lesson(string name, tm dateBegin, tm dateEnd, int maxStudents){

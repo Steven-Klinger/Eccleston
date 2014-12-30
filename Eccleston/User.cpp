@@ -1,6 +1,7 @@
 #include<iostream>
 #include "User.h"
 #include <string>
+//#include "ModelEccleston.h"
 
 
 User::User(){
@@ -8,7 +9,8 @@ User::User(){
 	this->firstName = "";
 	this->login = "";
 	this->password = "";
-	this->email = "";
+	this->email = ""; 
+	//this->mde = &(new ModelEccleston());
 }
 
 User::User(string name, string firstName, string login, string password, string email){

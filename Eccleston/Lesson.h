@@ -2,6 +2,10 @@
 #define LESSON_H
 
 #include <iostream>
+#include <vector>
+class Student;
+class Teacher;
+#include "Resource.h"
 using namespace std;
 
 class Lesson
@@ -52,10 +56,10 @@ protected:
 	tm dateEnd;
 	int validate;
 	int maxStudents;
-//	vector<Student> MainListUsers;
-//	vector<Student> SecondaryListUsers;
-//	vector<Resource> listResources;
-//	Teacher teacher;
+	vector<Student> MainListUsers;
+	vector<Student> SecondaryListUsers;
+	vector<Resource> listResources;
+	//Teacher teacher;
 };
 
 #endif

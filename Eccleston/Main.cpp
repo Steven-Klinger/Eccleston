@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "Lesson.h"
-#include "Lesson.h"
+#include "Student.h"
 #include "User.h"
 #include "ModelEccleston.h"
 
@@ -52,6 +52,13 @@ int main(void) {
 
 	printf("\n---------- is chppr@chppr.chppr available ? --------------\n");
 	std::cout << "" << me.checkEMailAvailable("chppr@chppr.chppr") << '\n';
+	
+	printf("\n---------- CREAT STUDENT --------------\n");
+	Student st1 = Student("Mellinger","Erwan le student","erwan","proot","azeza");
+	me.addUser(st1);
+	for (int i = 0; i < 3; i++){
+		std::cout << "prenom du user " << i << " : " << me.getUser(i).getFirstName() << '\n';
+	}
 
 	system("pause");
 	return 0;
