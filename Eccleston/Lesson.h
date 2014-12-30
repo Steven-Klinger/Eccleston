@@ -16,10 +16,10 @@ public:
 	Lesson(string, int);
 	Lesson();
 
-//	void addResource(Resource);
-//	void addStudent(Student);
-//	void addStudentMainList(Student);
-//	void addStudentSecondaryList(Student);
+	void addResource(Resource*);
+	void addStudent(Student*);
+	void addStudentMainList(Student*);
+	void addStudentSecondaryList(Student*);
 	int checkDate(tm);
 	int checkFile(string);
 	int checkRepository(string);
@@ -29,8 +29,9 @@ public:
 	tm getDateEnd() const { return this->dateEnd; }
 	int getMaxStudents() const{ return this->maxStudents; }
 	string getName() const { return this->name; }
-	// Resource getResource(int);
-	// Resource* getResources();
+	int getNumbreStudent();
+	Resource* getResource(int);
+	vector<Resource*> getResources();
 	// Student getStudentSecondaryList(int);
 	// Student* getStudents();
 	Teacher* getTeacher() { return teacher; }
@@ -57,9 +58,9 @@ protected:
 	int validate;
 	int maxStudents;
 	/* soucis à regler ici */
-	vector<Student*> MainListUsers;
-	vector<Student*> SecondaryListUsers;
-	vector<Resource*> listResources;
+	std::vector<Student*> mainListUsers;
+	std::vector<Student*> secondaryListUsers;
+	std::vector<Resource*> listResources;
 	Teacher* teacher;
 };
 
