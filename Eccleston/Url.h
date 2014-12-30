@@ -4,7 +4,9 @@
 #include <iostream>
 using namespace std;
 
-class Url{
+#include "Resource.h"
+
+class Url : public Resource {
 public:
 	Url(string, int, string);
 	int getTypeResource();

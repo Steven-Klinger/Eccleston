@@ -8,7 +8,7 @@ using namespace std;
 class File : public Resource
 {
 public:
-	File(string,tm, int, string);
+	File(string, int, string);
 	string getPath();
 	void setPath(string);
 

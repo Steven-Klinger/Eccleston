@@ -4,7 +4,7 @@
 #include "Resource.h"
 
 
-File::File(string name,tm dateCreation, int visible, string path) : Resource(name,dateCreation,visible){
+File::File(string name, int visible, string path) : Resource(name, visible){
 	this->path = path;
 }
 

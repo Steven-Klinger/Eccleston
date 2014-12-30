@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 
-Resource::Resource(string name, tm dateCreation, int visible){
+Resource::Resource(string name, int visible){
 	this->name = name;
-	this->dateCreation = dateCreation;
+	this->dateCreation = tm();
 	this->visible = visible;
 }
 

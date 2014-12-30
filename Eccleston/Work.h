@@ -8,7 +8,7 @@ using namespace std;
 class Work : public File
 {
 public:
-	Work(string,tm,int, string);
+	Work(string, int, string);
 	int getMark();
 	Student getStudent();
 	int getTypeResource();

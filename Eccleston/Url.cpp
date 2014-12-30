@@ -2,9 +2,8 @@
 #include "Url.h"
 #include <string>
 
-Url::Url(string name, int visible, string link) : Resource(string name, tm dateCreation, int visible){
+Url::Url(string name, int visible, string url) : Resource(name, visible){
 	this->url = url;
-	this->link = link; //on l'appelle link le lien non??
 }
 
 int Url::getTypeResource(){

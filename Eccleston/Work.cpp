@@ -5,7 +5,7 @@
 #include "Student.h"
 #include "File.h"
 
-Work::Work(string name,tm dateCreation, int visible, string path) : File(name,dateCreation,visible,path){
+Work::Work(string name, int visible, string path) : File(name, visible, path){
 
 	this->mark = -1; //valeur par défaut
 }

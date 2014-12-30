@@ -6,7 +6,7 @@ using namespace std;
 
 class Resource{
 public:
-	Resource(string, tm, int);
+	Resource(string, int);
 	
 	tm getDateCreation() const{ return this->dateCreation; }
 	string getName() const{ return this->name; }
