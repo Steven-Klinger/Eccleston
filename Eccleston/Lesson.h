@@ -57,9 +57,9 @@ protected:
 	int validate;
 	int maxStudents;
 	/* soucis à regler ici */
-	//vector<Student> MainListUsers;
-	//vector<Student> SecondaryListUsers;
-	//vector<Resource> listResources;
+	vector<Student*> MainListUsers;
+	vector<Student*> SecondaryListUsers;
+	vector<Resource*> listResources;
 	Teacher* teacher;
 };
 
