@@ -43,7 +43,7 @@ void Lesson::addResource(Resource* res) {
 }
 
 void Lesson::addStudent(Student* stud) {
-	if (this->isMainListFull) {
+	if (this->isMainListFull()) {
 		this->addStudentSecondaryList(stud);
 	}
 	else {
