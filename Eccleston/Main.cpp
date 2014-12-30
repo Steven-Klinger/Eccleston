@@ -56,7 +56,7 @@ int main(void) {
 	printf("\n---------- CREAT STUDENT --------------\n");
 	Student st1 = Student("Mellinger","Erwan le student","erwan","proot","azeza");
 	me.addUser(st1);
-	for (int i = 0; i < 3; i++){
+	for (int i = 0; i < 5; i++){
 		std::cout << "prenom du user " << i << " : " << me.getUser(i).getFirstName() << '\n';
 	}
 

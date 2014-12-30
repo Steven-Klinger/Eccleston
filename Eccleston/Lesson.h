@@ -56,9 +56,10 @@ protected:
 	tm dateEnd;
 	int validate;
 	int maxStudents;
-	vector<Student> MainListUsers;
-	vector<Student> SecondaryListUsers;
-	vector<Resource> listResources;
+	/* soucis à regler ici */
+	//vector<Student> MainListUsers;
+	//vector<Student> SecondaryListUsers;
+	//vector<Resource> listResources;
 	//Teacher teacher;
 };
 
