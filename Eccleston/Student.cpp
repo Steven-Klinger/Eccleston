@@ -14,6 +14,9 @@ Student::Student(string firstName, string Name, string password, string login, s
 	this->email = email;
 }
 
+Student::Student() : User(){
+
+}
 
 Student::~Student()
 {

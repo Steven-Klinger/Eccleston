@@ -1,8 +1,11 @@
 #include<iostream>
 #include "File.h"
 #include <string>
+#include "Work.h"
+#include "Student.h"
+#include "File.h"
 
-Work::Work(string name, string path) : File(string name, int visible, string path){
+Work::Work(string name,tm dateCreation, int visible, string path) : File(name,dateCreation,visible,path){
 
 	this->mark = -1; //valeur par défaut
 }

@@ -17,6 +17,7 @@ class Student: public User
 
 public:
 	Student(string,string,string,string,string);
+	Student();
 	~Student();
 	void addLesson(string, tm, tm);
 	void addNotification(Lesson); 
