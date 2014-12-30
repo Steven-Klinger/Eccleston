@@ -36,12 +36,12 @@ public:
 //	vector<Student*> getStudents();
 	Teacher* getTeacher() { return teacher; }
 	int isMainListFull();
-	// int isStudentMainList(Student);
+	int isStudentMainList(Student*);
 	int isValidated() const { return validate; }
-	// void removeResource(Resource);
-	// void removeStudent(Student);
-	// void removeStudentMainList(Student);
-	// void removeStudentSecondaryList(Student);
+	void removeResource(Resource*);
+	void removeStudent(Student*);
+	void removeStudentMainList(Student*);
+	void removeStudentSecondaryList(Student*);
 	void setDateBegin(tm dateBegin) { this->dateBegin = dateBegin; }
 	void setDateEnd(tm dateEnd) { this->dateEnd = dateEnd; }
 	void setMaxStudent(int maxStudent) { this->maxStudents = maxStudent; }

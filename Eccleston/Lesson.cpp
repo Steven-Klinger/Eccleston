@@ -86,3 +86,49 @@ int Lesson::isMainListFull() {
 		return 0;
 	}
 }
+
+int Lesson::isStudentMainList(Student* stud) {
+	int studPresent = 0;
+	for (unsigned int i = 0; i < mainListStudent.size(); i++){
+		if (mainListStudent.at(i)->getName() == stud->getName() && mainListStudent.at(i)->getFirstName() == stud->getFirstName()){
+			studPresent++;
+		}
+	}
+	return studPresent;
+}
+
+void Lesson::removeResource(Resource* oldRes) {
+	for (unsigned int i = 0; i < listResources.size(); i++){
+		if (listResources.at(i)->getName() == oldRes->getName()){
+			listResources.erase(listResources.begin() + i);
+		}
+	}
+}
+
+void Lesson::removeStudent(Student* oldStud) {
+	this->removeStudentMainList(oldStud);
+	this->removeStudentSecondaryList(oldStud);
+}
+
+void Lesson::removeStudentMainList(Student* oldStud) {
+	int listFull = this->isMainListFull();
+	int studDelete = 0;
+	for (unsigned int i = 0; i < mainListStudent.size(); i++){
+		if (mainListStudent.at(i)->getName() == oldStud->getName() && mainListStudent.at(i)->getFirstName() == oldStud->getFirstName()){
+			mainListStudent.erase(mainListStudent.begin() + i);
+			studDelete++;
+		}
+	}
+	if (studDelete && listFull) {
+		mainListStudent.push_back(secondaryListStudent.at(0));
+		secondaryListStudent.erase(secondaryListStudent.begin());
+	}
+}
+
+void Lesson::removeStudentSecondaryList(Student* oldStud) {
+	for (unsigned int i = 0; i < mainListStudent.size(); i++){
+		if (secondaryListStudent.at(i)->getName() == oldStud->getName() && secondaryListStudent.at(i)->getFirstName() == oldStud->getFirstName()){
+			secondaryListStudent.erase(secondaryListStudent.begin() + i);
+		}
+	}
+}
