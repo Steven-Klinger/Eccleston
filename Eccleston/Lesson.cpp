@@ -43,7 +43,7 @@ void Lesson::addResource(Resource* res) {
 }
 
 void Lesson::addStudent(Student* stud) {
-	if (this->getNumbreStudent() >= this->getMaxStudents()) {
+	if (this->isMainListFull) {
 		this->addStudentSecondaryList(stud);
 	}
 	else {
@@ -52,17 +52,17 @@ void Lesson::addStudent(Student* stud) {
 }
 
 void Lesson::addStudentMainList(Student* stud) {
-	this->mainListUsers.push_back(stud);
+	this->mainListStudent.push_back(stud);
 }
 
 void Lesson::addStudentSecondaryList(Student* stud) {
-	this->secondaryListUsers.push_back(stud);
+	this->secondaryListStudent.push_back(stud);
 }
 
 int Lesson::getNumbreStudent() {
 	int num = 0;
-	num += mainListUsers.size();
-	num += secondaryListUsers.size();
+	num += mainListStudent.size();
+	num += secondaryListStudent.size();
 	return num;
 }
 
@@ -70,6 +70,19 @@ Resource* Lesson::getResource(int index) {
 	return listResources.at(index);
 }
 
+Student* Lesson::getStudentSecondaryList(int index) {
+	return this->secondaryListStudent.at(index);
+}
+
 vector<Resource*> Lesson::getResources() {
 	return listResources;
+}
+
+int Lesson::isMainListFull() {
+	if (this->getNumbreStudent() >= this->getMaxStudents()) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }

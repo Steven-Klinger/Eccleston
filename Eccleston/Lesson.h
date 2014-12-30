@@ -32,10 +32,10 @@ public:
 	int getNumbreStudent();
 	Resource* getResource(int);
 	vector<Resource*> getResources();
-	// Student getStudentSecondaryList(int);
-	// Student* getStudents();
+	Student* getStudentSecondaryList(int);
+//	vector<Student*> getStudents();
 	Teacher* getTeacher() { return teacher; }
-	// int isMainListFull();
+	int isMainListFull();
 	// int isStudentMainList(Student);
 	int isValidated() const { return validate; }
 	// void removeResource(Resource);
@@ -58,8 +58,8 @@ protected:
 	int validate;
 	int maxStudents;
 	/* soucis à regler ici */
-	std::vector<Student*> mainListUsers;
-	std::vector<Student*> secondaryListUsers;
+	std::vector<Student*> mainListStudent;
+	std::vector<Student*> secondaryListStudent;
 	std::vector<Resource*> listResources;
 	Teacher* teacher;
 };
