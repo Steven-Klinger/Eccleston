@@ -1,18 +1,27 @@
 #include "ModelEccleston.h"
 #include <istream>
 #include <fstream>
+#include <string> // necesaire pour getline
+#include <sstream>
 //constructeur
 ModelEccleston::ModelEccleston()
 {
-	string path = "user.txt";
+	// fill the list of users with data in users.txt file
+	string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
 	std::ifstream file(path.c_str(), ios::in);
 	if (file){ // if file exists
 		string line;
-		while (std::getline(file,line)){ 
-			
-			file.close(); //close the file
+		while (getline(file, line)){
+			istringstream iss(line); // creat a separator for line
+			string firstName, name, login, password, eMail;
+			iss >> name >> firstName >> login >> password >> eMail;
+			if (!this->checkLogin(login)){
+				this->listUsers.push_back(User(name, firstName, login, password, eMail));
+			}
 		}
+		file.close(); //close the file
 	}
+	
 }
 
 
@@ -25,7 +34,27 @@ void ModelEccleston::addLesson(Lesson lesson){
 }
 
 void ModelEccleston::addUser(User user){
-	listUsers.push_back(user);
+	if (!this->checkLogin(user.getLogin())){
+		listUsers.push_back(user);
+		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		std::ofstream file(path.c_str(), ios::out | ios::app);
+		if (file){ // if file exists
+
+			cout << "insertion fichier users.tx ok" << endl;
+
+			string firstName, name, login, password, eMail;
+			name = user.getName();
+			firstName = user.getFirstName();
+			login = user.getLogin();
+			password = user.getPassword();
+			eMail = user.getEmail();
+			file << name << " " << firstName << " " << login << " " << password << " " << eMail << " " << endl;
+			file.close(); //close the file
+		}
+		else {
+			cout << "insertion fichier users.tx PAS ok" << endl;
+		}
+	}
 }
 
 bool ModelEccleston::checkDate(tm date1, tm date2){
@@ -99,6 +128,10 @@ User ModelEccleston::getCurrentUser(){
 
 vector<Lesson> ModelEccleston::getOpenLesson(){
 	return this->listLessons; // A MODIFIER !!!
+}
+
+vector<User> ModelEccleston::getUsers(){
+	return this->listUsers;
 }
 
 User ModelEccleston::getUser(int i){

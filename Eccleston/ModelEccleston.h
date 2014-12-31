@@ -34,6 +34,7 @@ public:
 	User getUser(int i);
 	User getUserByLogin(string login);
 	std::vector<Lesson> getWaitingLessons();
+	vector<User> getUsers(); // non presente dans le contrat 
 	void removeLesson(Lesson lesson);
 	void removeUser(User user);
 	void setUser(int id, User user);
