@@ -1,65 +1,84 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include <windows.h>
 
-#include "Lesson.h"
-#include "Student.h"
-#include "User.h"
 #include "ModelEccleston.h"
+#include "User.h"
+#include "Admin.h"
 
-int main(void) {
+const char g_szClassName[] = "myWindowClass";
 
-	// marche po :/
-	std::string prenom = "erwan";
-	std::cout << prenom << '\n';
-	User usvide = User();
-	User us1 = User("mellinger", "erwan", "chppr", "prout", "chppr@chppr.chppr");
-	User us2 = User("Merkling", "Raphael", "Desmero", "prout", "chppr@chppr.chppr");
-	User us3 = User("Anduze", "Nicolas", "NICO", "prout", "chppr@chppr.chppr");
-	User us4 = User("Klinger", "Steven", "PhantomD", "prout", "chppr@chppr.chppr");
-
-	printf("\n----------USER1 --------------\n");
-	std::cout << "prenom " << us1.getFirstName() << '\n';
-	std::cout << "nom " << us1.getName() << '\n';
-	std::cout << "login " << us1.getLogin() << '\n';
-	std::cout << "mdp " << us1.getPassword() << '\n';
-	std::cout << "email " << us1.getEmail() << '\n';
-
-	printf("\n---------- TEST MODELE --------------\n");
-	ModelEccleston me;
-	me.addUser(us1);
-	me.addUser(us2);
-	me.addUser(us3);
-	me.addUser(us4);
-	for (int i = 0; i < 4; i++){
-		std::cout << "prenom du user "<< i << " : "<< me.getUser(i).getFirstName() << '\n';
+// Step 4: the Window Procedure
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch(msg)
+	{
+		case WM_CLOSE:
+			DestroyWindow(hwnd);
+		break;
+		case WM_DESTROY:
+			PostQuitMessage(0);
+		break;
+		default:
+			return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
-
-	printf("\n----------SUPP USR --------------\n");
-	me.removeUser(us1);
-	for (int i = 0; i < 3; i++){
-		std::cout << "prenom du user " << i << " : " << me.getUser(i).getFirstName() << '\n';
-	}
-
-	printf("\n---------- RAJOUT USR 1 --------------\n");
-	me.addUser(us1);
-	for (int i = 0; i < 4; i++){
-		std::cout << "prenom du user " << i << " : " << me.getUser(i).getFirstName() << '\n';
-	}
-
-	printf("\n---------- GET USERBY LOGIN CHPPR --------------\n");
-	std::cout << "on cherche le prenom de chppr :" << me.getUserByLogin("chppr").getFirstName() << '\n';
-
-	printf("\n---------- is chppr@chppr.chppr available ? --------------\n");
-	std::cout << "" << me.checkEMailAvailable("chppr@chppr.chppr") << '\n';
-	
-	printf("\n---------- CREAT STUDENT --------------\n");
-	Student st1 = Student("Mellinger","Erwan le student","erwan","proot","azeza");
-	me.addUser(st1);
-	for (int i = 0; i < 5; i++){
-		std::cout << "prenom du user " << i << " : " << me.getUser(i).getFirstName() << '\n';
-	}
-
-	system("pause");
 	return 0;
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+	LPSTR lpCmdLine, int nCmdShow)
+{
+	WNDCLASSEX wc;
+	HWND hwnd;
+	MSG Msg;
+
+	ModelEccleston *model = new ModelEccleston();
+	Admin *adm = new Admin("Raphaem", "Merkling", "aze", "Desmero", "machin@mail.com");
+	model->addUser(*adm);
+
+	//Step 1: Registering the Window Class
+	wc.cbSize		 = sizeof(WNDCLASSEX);
+	wc.style		 = 0;
+	wc.lpfnWndProc	 = WndProc;
+	wc.cbClsExtra	 = 0;
+	wc.cbWndExtra	 = 0;
+	wc.hInstance	 = hInstance;
+	wc.hIcon		 = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hCursor		 = LoadCursor(NULL, IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
+	wc.lpszMenuName  = NULL;
+	wc.lpszClassName = g_szClassName;
+	wc.hIconSm		 = LoadIcon(NULL, IDI_APPLICATION);
+
+	if(!RegisterClassEx(&wc))
+	{
+		MessageBox(NULL, "Window Registration Failed!", "Error!",
+			MB_ICONEXCLAMATION | MB_OK);
+		return 0;
+	}
+
+	// Step 2: Creating the Window
+	hwnd = CreateWindowEx(
+		WS_EX_CLIENTEDGE,
+		g_szClassName,
+		"The title of my window",
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT, 240, 120,
+		NULL, NULL, hInstance, NULL);
+
+	if(hwnd == NULL)
+	{
+		MessageBox(NULL, "Window Creation Failed!", "Error!",
+			MB_ICONEXCLAMATION | MB_OK);
+		return 0;
+	}
+
+	ShowWindow(hwnd, nCmdShow);
+	UpdateWindow(hwnd);
+
+	// Step 3: The Message Loop
+	while(GetMessage(&Msg, NULL, 0, 0) > 0)
+	{
+		TranslateMessage(&Msg);
+		DispatchMessage(&Msg);
+	}
+	return Msg.wParam;
 }
