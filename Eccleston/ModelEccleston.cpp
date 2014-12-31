@@ -1,9 +1,18 @@
 #include "ModelEccleston.h"
-
+#include <istream>
+#include <fstream>
 //constructeur
 ModelEccleston::ModelEccleston()
 {
-
+	string path = "user.txt";
+	std::ifstream file(path.c_str(), ios::in);
+	if (file){ // if file exists
+		string line;
+		while (std::getline(file,line)){ 
+			
+			file.close(); //close the file
+		}
+	}
 }
 
 

@@ -13,6 +13,7 @@
 #include <vector>
 #include <algorithm>  // std::for_each
 
+
 class ModelEccleston
 {
 public:
