@@ -4,21 +4,75 @@
 #include "User.h"
 #include "Admin.h"
 
+#define ID_FILE_EXIT 9001
+#define ID_FILE_LOGOUT 9002
+#define ID_STUFF_GO 9003
+
 const char g_szClassName[] = "myWindowClass";
 
 // Step 4: the Window Procedure
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
-	switch(msg)
+	switch (Message)
 	{
-		case WM_CLOSE:
-			DestroyWindow(hwnd);
+	case WM_CREATE:
+	{
+					  HMENU hMenu, hSubMenu;
+					  HICON hIcon, hIconSm;
+
+					  hMenu = CreateMenu();
+
+					  hSubMenu = CreatePopupMenu();
+					  AppendMenu(hSubMenu, MF_STRING, ID_FILE_EXIT, "&Logout");
+					  AppendMenu(hSubMenu, MF_STRING, ID_FILE_LOGOUT, "E&xit");
+					  AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&File");
+
+					  hSubMenu = CreatePopupMenu();
+					  AppendMenu(hSubMenu, MF_STRING, ID_STUFF_GO, "&Go");
+					  AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&Stuff");
+
+					  SetMenu(hwnd, hMenu);
+
+					  hIcon = (HICON)LoadImage(NULL, "logo.ico", IMAGE_ICON, 32, 32, LR_LOADFROMFILE);
+					  if (hIcon)
+					  {
+						  SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+					  }
+					  else
+					  {
+						  MessageBox(hwnd, "Could not load large icon! Is it in the current working directory?", "Error", MB_OK | MB_ICONERROR);
+					  }
+
+					  hIconSm = (HICON)LoadImage(NULL, "logo.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+					  if (hIconSm)
+					  {
+						  SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIconSm);
+					  }
+					  else
+					  {
+						  MessageBox(hwnd, "Could not load small icon! Is it in the current working directory?", "Error", MB_OK | MB_ICONERROR);
+					  }
+	}
 		break;
-		case WM_DESTROY:
-			PostQuitMessage(0);
+	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case ID_FILE_EXIT:
+			PostMessage(hwnd, WM_CLOSE, 0, 0);
+			break;
+		case ID_STUFF_GO:
+			MessageBox(hwnd, "You clicked Go!", "Woo!", MB_OK);
+			break;
+		}
 		break;
-		default:
-			return DefWindowProc(hwnd, msg, wParam, lParam);
+	case WM_CLOSE:
+		DestroyWindow(hwnd);
+		break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	default:
+		return DefWindowProc(hwnd, Message, wParam, lParam);
 	}
 	return 0;
 }
