@@ -159,7 +159,7 @@ void ModelEccleston::removeLesson(Lesson lesson){
 		listLessons.erase(listLessons.begin() + 0);
 	}
 	else {
-		for (int i = 1; i < listLessons.size(); i++){
+		for (unsigned int i = 1; i < listLessons.size(); i++){
 			if (listLessons.at(i).getName() == lesson.getName()){
 				listLessons.erase(listLessons.begin() + i);
 			}
@@ -175,7 +175,7 @@ void ModelEccleston::removeUser(User user){
 		listUsers.erase(listUsers.begin() + 0);
 	}
 	else {
-		for (int i = 1; i < listUsers.size(); i++){
+		for (unsigned int i = 1; i < listUsers.size(); i++){
 			if (listUsers.at(i).getLogin() == user.getLogin()){
 				listUsers.erase(listUsers.begin() + i);
 			}
