@@ -4,9 +4,7 @@
 #include "User.h"
 #include "Admin.h"
 
-#define ID_FILE_EXIT 9001
-#define ID_FILE_LOGOUT 9002
-#define ID_STUFF_GO 9003
+#include "projResource.h" 
 
 const char g_szClassName[] = "myWindowClass";
 
@@ -15,45 +13,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 {
 	switch (Message)
 	{
-	case WM_CREATE:
-	{
-					  HMENU hMenu, hSubMenu;
-					  HICON hIcon, hIconSm;
-
-					  hMenu = CreateMenu();
-
-					  hSubMenu = CreatePopupMenu();
-					  AppendMenu(hSubMenu, MF_STRING, ID_FILE_EXIT, "&Logout");
-					  AppendMenu(hSubMenu, MF_STRING, ID_FILE_LOGOUT, "E&xit");
-					  AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&File");
-
-					  hSubMenu = CreatePopupMenu();
-					  AppendMenu(hSubMenu, MF_STRING, ID_STUFF_GO, "&Go");
-					  AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&Stuff");
-
-					  SetMenu(hwnd, hMenu);
-
-					  hIcon = (HICON)LoadImage(NULL, "logo.ico", IMAGE_ICON, 32, 32, LR_LOADFROMFILE);
-					  if (hIcon)
-					  {
-						  SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
-					  }
-					  else
-					  {
-						  MessageBox(hwnd, "Could not load large icon! Is it in the current working directory?", "Error", MB_OK | MB_ICONERROR);
-					  }
-
-					  hIconSm = (HICON)LoadImage(NULL, "logo.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-					  if (hIconSm)
-					  {
-						  SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIconSm);
-					  }
-					  else
-					  {
-						  MessageBox(hwnd, "Could not load small icon! Is it in the current working directory?", "Error", MB_OK | MB_ICONERROR);
-					  }
-	}
-		break;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
@@ -95,12 +54,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wc.cbClsExtra	 = 0;
 	wc.cbWndExtra	 = 0;
 	wc.hInstance	 = hInstance;
-	wc.hIcon		 = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hIcon		 = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON));
 	wc.hCursor		 = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-	wc.lpszMenuName  = NULL;
+	wc.lpszMenuName  = MAKEINTRESOURCE(IDR_MYMENU);
 	wc.lpszClassName = g_szClassName;
-	wc.hIconSm		 = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hIconSm		 = (HICON)LoadImage(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_MYICON), IMAGE_ICON, 16, 16, 0);
 
 	if(!RegisterClassEx(&wc))
 	{
