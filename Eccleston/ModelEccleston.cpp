@@ -15,7 +15,7 @@ ModelEccleston::ModelEccleston()
 			istringstream iss(line); // creat a separator for line
 			string firstName, name, login, password, eMail;
 			iss >> name >> firstName >> login >> password >> eMail;
-			if (!this->checkLogin(login)){
+			if (!this->checkLogin(login, password)){
 				this->listUsers.push_back(User(name, firstName, login, password, eMail));
 			}
 		}
@@ -34,7 +34,7 @@ void ModelEccleston::addLesson(Lesson lesson){
 }
 
 void ModelEccleston::addUser(User user){
-	if (!this->checkLogin(user.getLogin())){
+	if (!this->checkLogin(user.getLogin(), "")){
 		listUsers.push_back(user);
 		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
@@ -85,7 +85,7 @@ bool ModelEccleston::checkLesson(string lesson){
 }
 
 /* return true if the login in parameter is in listUsers*/
-bool ModelEccleston::checkLogin(string login){
+bool ModelEccleston::checkLogin(string login, string password){
 	bool loginCheck = false;
 	for (User us : listUsers){
 		if (us.getLogin() == login){

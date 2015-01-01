@@ -1,97 +1,165 @@
-#include <windows.h>
+// GT_HelloWorldWin32.cpp
+// compile with: /D_UNICODE /DUNICODE /DWIN32 /D_WINDOWS /c
 
+#include <windows.h>
+#include <stdlib.h>
+#include <string.h>
+#include <tchar.h>
+
+#include "projResource.h"
 #include "ModelEccleston.h"
-#include "User.h"
 #include "Admin.h"
 
-#include "projResource.h" 
+// Global variables
 
-const char g_szClassName[] = "myWindowClass";
+// The main window class name.
+static TCHAR szWindowClass[] = _T("win32app");
 
-// Step 4: the Window Procedure
-LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
+// The string that appears in the application's title bar.
+static TCHAR szTitle[] = _T("Win32 Guided Tour Application");
+
+HINSTANCE hInst;
+
+ModelEccleston *model = new ModelEccleston();
+
+// Forward declarations of functions included in this code module:
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+int WINAPI WinMain(HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	LPSTR lpCmdLine,
+	int nCmdShow)
 {
-	switch (Message)
+	Admin *adm = new Admin("Raphael", "Merkling", "aze", "Desmero", "machin@mail.com");
+	model->addUser(*adm);
+	
+	WNDCLASSEX wcex;
+
+	wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON));
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = MAKEINTRESOURCE(IDR_MYMENU);
+	wcex.lpszClassName = szWindowClass;
+	wcex.hIconSm = (HICON)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON), IMAGE_ICON, 16, 16, 0);
+
+	if (!RegisterClassEx(&wcex))
 	{
+		MessageBox(NULL,
+			_T("Call to RegisterClassEx failed!"),
+			_T("Win32 Guided Tour"),
+			NULL);
+
+		return 1;
+	}
+
+	hInst = hInstance; // Store instance handle in our global variable
+
+	// The parameters to CreateWindow explained:
+	// szWindowClass: the name of the application
+	// szTitle: the text that appears in the title bar
+	// WS_OVERLAPPEDWINDOW: the type of window to create
+	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)
+	// 500, 100: initial size (width, length)
+	// NULL: the parent of this window
+	// NULL: this application does not have a menu bar
+	// hInstance: the first parameter from WinMain
+	// NULL: not used in this application
+	HWND hWnd = CreateWindow(
+		szWindowClass,
+		szTitle,
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		500, 450,
+		NULL,
+		NULL,
+		hInstance,
+		NULL
+		);
+
+	if (!hWnd)
+	{
+		MessageBox(NULL,
+			_T("Call to CreateWindow failed!"),
+			_T("Win32 Guided Tour"),
+			NULL);
+
+		return 1;
+	}
+
+	// The parameters to ShowWindow explained:
+	// hWnd: the value returned from CreateWindow
+	// nCmdShow: the fourth parameter from WinMain
+	ShowWindow(hWnd,
+		nCmdShow);
+	UpdateWindow(hWnd);
+
+	// Main message loop:
+	MSG msg;
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	return (int)msg.wParam;
+}
+
+//
+//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
+//
+//  PURPOSE:  Processes messages for the main window.
+//
+//  WM_PAINT    - Paint the main window
+//  WM_DESTROY  - post a quit message and return
+//
+//
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	static HWND boutonsLogin[2] = { NULL };
+	static HWND labelLogin[2] = { NULL };
+	static HWND textLogin[2] = { NULL };
+
+	switch (message)
+	{
+	case WM_CREATE:
+		boutonsLogin[0] = CreateWindow("button", "Connexion", WS_CHILD | WS_VISIBLE, 50, 150, 80, 30, hWnd, (HMENU) ID_B_CONNECT, hInst, NULL);
+		boutonsLogin[1] = CreateWindow("button", "Quitter", WS_CHILD | WS_VISIBLE, 250, 150, 80, 30, hWnd, (HMENU) ID_FILE_EXIT, hInst, NULL);
+		labelLogin[0] = CreateWindow("static", "Login :", WS_CHILD | WS_VISIBLE, 50, 50, 80, 30, hWnd, NULL, hInst, NULL);
+		labelLogin[1] = CreateWindow("static", "Mot de passe :", WS_CHILD | WS_VISIBLE, 50, 100, 100, 30, hWnd, NULL, hInst, NULL);
+		textLogin[0] = CreateWindow("EDIT", "ici", WS_CHILD | WS_VISIBLE, 250, 50, 80, 30, hWnd, NULL, hInst, NULL);
+		textLogin[1] = CreateWindow("EDIT", "ici", WS_CHILD | WS_VISIBLE, 250, 100, 80, 30, hWnd, NULL, hInst, NULL);
+		return 0;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
-		case ID_FILE_EXIT:
-			PostMessage(hwnd, WM_CLOSE, 0, 0);
-			break;
-		case ID_STUFF_GO:
-			MessageBox(hwnd, "You clicked Go!", "Woo!", MB_OK);
+		case ID_B_CONNECT:
+		{
+			if (model->checkLogin("Desmero", "aze")) {
+				MessageBox(hWnd, "Vous alez etre conneccté", "Woo!", MB_OK);
+			}
 			break;
 		}
-		break;
-	case WM_CLOSE:
-		DestroyWindow(hwnd);
+		case ID_FILE_EXIT:
+			PostMessage(hWnd, WM_CLOSE, 0, 0);
+			break;
+		case ID_STUFF_GO:
+			MessageBox(hWnd, "You clicked Go!", "Woo!", MB_OK);
+			break;
+		}
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
 	default:
-		return DefWindowProc(hwnd, Message, wParam, lParam);
+		return DefWindowProc(hWnd, message, wParam, lParam);
+		break;
 	}
+
 	return 0;
-}
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine, int nCmdShow)
-{
-	WNDCLASSEX wc;
-	HWND hwnd;
-	MSG Msg;
-
-	ModelEccleston *model = new ModelEccleston();
-	Admin *adm = new Admin("Raphaem", "Merkling", "aze", "Desmero", "machin@mail.com");
-	model->addUser(*adm);
-
-	//Step 1: Registering the Window Class
-	wc.cbSize		 = sizeof(WNDCLASSEX);
-	wc.style		 = 0;
-	wc.lpfnWndProc	 = WndProc;
-	wc.cbClsExtra	 = 0;
-	wc.cbWndExtra	 = 0;
-	wc.hInstance	 = hInstance;
-	wc.hIcon		 = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON));
-	wc.hCursor		 = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-	wc.lpszMenuName  = MAKEINTRESOURCE(IDR_MYMENU);
-	wc.lpszClassName = g_szClassName;
-	wc.hIconSm		 = (HICON)LoadImage(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_MYICON), IMAGE_ICON, 16, 16, 0);
-
-	if(!RegisterClassEx(&wc))
-	{
-		MessageBox(NULL, "Window Registration Failed!", "Error!",
-			MB_ICONEXCLAMATION | MB_OK);
-		return 0;
-	}
-
-	// Step 2: Creating the Window
-	hwnd = CreateWindowEx(
-		WS_EX_CLIENTEDGE,
-		g_szClassName,
-		"The title of my window",
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 240, 120,
-		NULL, NULL, hInstance, NULL);
-
-	if(hwnd == NULL)
-	{
-		MessageBox(NULL, "Window Creation Failed!", "Error!",
-			MB_ICONEXCLAMATION | MB_OK);
-		return 0;
-	}
-
-	ShowWindow(hwnd, nCmdShow);
-	UpdateWindow(hwnd);
-
-	// Step 3: The Message Loop
-	while(GetMessage(&Msg, NULL, 0, 0) > 0)
-	{
-		TranslateMessage(&Msg);
-		DispatchMessage(&Msg);
-	}
-	return Msg.wParam;
 }

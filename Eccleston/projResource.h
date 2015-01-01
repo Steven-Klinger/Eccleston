@@ -8,6 +8,10 @@
 #define ID_STUFF_GO                     40002
 #define ID_STUFF_GOSOMEWHEREELSE        40003
 
+// Bouton de connexion
+//
+#define ID_B_CONNECT					104
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
@@ -18,3 +22,5 @@
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
+
+

@@ -25,7 +25,7 @@ public:
 	bool checkDate(tm date1, tm date2);
 	bool checkEMailAvailable(string email);
 	bool checkLesson(string lesson);
-	bool checkLogin(string login);
+	bool checkLogin(string login, string password); // A refaire !!!
 	bool checkLoginAvailable(string login);
 	bool checkNameAvailable(string s1, string s2);
 	User getAdmin();
