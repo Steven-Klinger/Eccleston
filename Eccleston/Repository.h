@@ -2,9 +2,11 @@
 #define REPOSITORY_H
 
 #include <iostream>
+#include "Work.h"
+#include "Resource.h"
 using namespace std;
 
-class Repository{
+class Repository : public Resource{
 public:
 	Repository(string, int, string, tm);
 	void addWork(Work, Student);
@@ -12,13 +14,14 @@ public:
 	int checkResourceName(string);
 	string getPath();
 	int getTypeResource();
-	Work[] getWorks();
+	vector<Work> getWorks();
 	void removeWork(Student);
 	void setPath(string);
 
 protected:
 	string path;
 	tm dateEnd;
+	vector<Work> listWorks;
 };
 
 #endif
