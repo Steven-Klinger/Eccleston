@@ -11,7 +11,7 @@ using namespace std;
 class User{
 public:
 	User();
-	User(string, string, string, string, string);
+	User(string, string, string, string, string, ModelEccleston*);
 	int checkEmail();
 	string getEmail() const{ return (this->email); }
 	string getFirstName() const{ return this->firstName; }

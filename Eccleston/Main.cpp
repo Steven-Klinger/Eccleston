@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	LPSTR lpCmdLine,
 	int nCmdShow)
 {
-	Admin *adm = new Admin("Raphael", "Merkling", "aze", "Desmero", "machin@mail.com");
+	Admin *adm = new Admin("Raphael", "Merkling", "aze", "Desmero", "machin@mail.com", model);
 	model->addUser(*adm);
 	
 	WNDCLASSEX wcex;

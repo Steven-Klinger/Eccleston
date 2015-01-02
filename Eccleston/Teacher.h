@@ -17,11 +17,12 @@ class Teacher : public User
 {
 public:
 	Teacher();
-	Teacher(string firstName, string name, string password, string login, string email);
+	Teacher(string firstName, string name, string password, string login, string email, ModelEccleston* model);
 	~Teacher();
 	void addLesson(string name, tm date1, tm date2, int maxStudent); 
-	void addNotification(Lesson lesson, bool b1);
-	vector<Lesson> getLesson();
+	void addNotification(Lesson lesson, bool validate);
+	Lesson getLesson(int);
+	vector<Lesson> getLessons();
 	int getUserType();
 	void setLesson(int i, Lesson newLesson);
 

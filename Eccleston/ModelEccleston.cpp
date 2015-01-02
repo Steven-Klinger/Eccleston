@@ -16,7 +16,7 @@ ModelEccleston::ModelEccleston()
 			string firstName, name, login, password, eMail;
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
-				this->listUsers.push_back(User(name, firstName, login, password, eMail));
+				this->listUsers.push_back(User(name, firstName, login, password, eMail, this));
 			}
 		}
 		file.close(); //close the file

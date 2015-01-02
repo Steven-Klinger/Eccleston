@@ -4,8 +4,8 @@
 //A faire après création du modèle 
 
 
-Student::Student(string firstName, string Name, string password, string login, string email) : User(firstName,Name,
-				password,login,email)
+Student::Student(string firstName, string Name, string password, string login, string email, ModelEccleston* model) : User(firstName,Name,
+				password,login,email, model)
 {
 	this->firstName = firstName;
 	this->name = Name;
@@ -26,29 +26,27 @@ Student::~Student()
 {
 }
 
-// comprends plus cette fonction *Erwan
-void Student::addLesson(string name, tm date1, tm date2){
-	
+void Student::addLesson(Lesson lesson){
+	listLessons.push_back(lesson);
 }
 
 void Student::addNotification(Lesson lesson){
-	string subject = "Notification Lesson";
-	string message = "add in Lesson " + lesson.getName();
+	string subject = "Add in main list";
+	string message = "You are in the main list for " + lesson.getName();
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);
 }
 
-void Student::addNotification(Resource res){
-	string subject = "Notification On resource";
-	string message = "add of Ressource " + res.getName();
+void Student::addNotification(Resource res, Lesson les){
+	string subject = "Add Resource";
+	string message = "add of Ressource " + res.getName() + " in " + les.getName();
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);
 }
 
-//à compléter
 void Student::addNotification(Work* work){
-	string subject = "Notification of Work";
-	string message = "add of work " ;
+	string subject = "Your work are marked";
+	string message = "Your have [work mark] for your work [name work]";
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);
 }
@@ -58,7 +56,7 @@ vector<Lesson> Student::getLessons(){
 }
 
 int Student::getUserType(){
-	return 1; // 1 pour student ?
+	return 2;
 }
 
 Work* Student::getWork(int i){

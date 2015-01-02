@@ -8,8 +8,8 @@ Teacher::Teacher() : User() {
 	this->email = "";
 }
 
-Teacher::Teacher(string firstName, string name, string password, string login, string email) : User(firstName, name,
-	password, login, email)
+Teacher::Teacher(string firstName, string name, string password, string login, string email, ModelEccleston* model) : User(firstName, name,
+	password, login, email, model)
 {
 	this->firstName = firstName;
 	this->name = name;
@@ -27,17 +27,27 @@ Teacher::~Teacher()
 void Teacher::addLesson(string name, tm date1, tm date2, int i){
 	this->listLesson.push_back(Lesson(name, date1, date2, i));
 }
-//comprends pas cette fonction
-void addNotification(Lesson lesson, bool b1){
 
+void Teacher::addNotification(Lesson lesson, bool validated)
+{
+	if (validated) {
+		this->listNotification.push_back(Notification("Lesson validated", "Lesson " + lesson.getName() + " is validated", tm()));
+	}
+	else {
+		this->listNotification.push_back(Notification("Lesson rejected", "Lesson " + lesson.getName() + " is rejected", tm()));
+	}
 }
 
-vector<Lesson> Teacher::getLesson(){
+Lesson Teacher::getLesson(int index){
+	return this->listLesson.at(index);
+}
+
+vector<Lesson> Teacher::getLessons(){
 	return this->listLesson;
 }
 
 int getUserType(){
-	return 2;
+	return 1;
 }
 
 void Teacher::setLesson(int i, Lesson newLesson){

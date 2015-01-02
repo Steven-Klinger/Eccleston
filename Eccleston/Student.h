@@ -18,12 +18,12 @@ class Student: public User
 {
 
 public:
-	Student(string,string,string,string,string);
+	Student(string,string,string,string,string, ModelEccleston*);
 	Student();
 	~Student();
-	void addLesson(string, tm, tm);
+	void addLesson(Lesson);
 	void addNotification(Lesson); 
-	void addNotification(Resource); 
+	void addNotification(Resource, Lesson); 
 	void addNotification(Work*);// à compléter plus tard
 	vector<Lesson> getLessons(); // TODO à vérifier
 	int getUserType();
