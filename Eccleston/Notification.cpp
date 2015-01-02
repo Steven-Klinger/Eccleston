@@ -7,26 +7,33 @@ Notification::Notification()
 {
 }
 
-string getSubject()
+string Notification::getSubject()
 {
-	return NULL;
+	return this->subject;
 }
 
-string getMessage()
+string Notification::getMessage()
 {
-	return NULL;
+	return this->message;
 }
 
-void setSubject(string)
-{
+tm Notification::getDateRecive(){
+	return this->dateRecive;
 }
 
-void setMessage(string)
+void Notification::setSubject(string newSub)
 {
+	this->subject = newSub;
 }
 
-void setDateRecive(tm)
+void Notification::setMessage(string newMess)
 {
+	this->message = newMess;
+}
+
+void Notification::setDateRecive(tm newDR)
+{
+	this->dateRecive = newDR;
 }
 
 Notification::~Notification()
