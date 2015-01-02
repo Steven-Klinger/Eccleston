@@ -5,10 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
-
+#include <iostream>
 #include "projResource.h"
 #include "ModelEccleston.h"
 #include "Admin.h"
+
+using namespace std;
 
 // Global variables
 
@@ -30,6 +32,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	LPSTR lpCmdLine,
 	int nCmdShow)
 {
+
+	User *us = new User("Klinger", "Steven", "PhantomD", "123", "email@mol.com", model);
+	us->checkEmail();
+	
 	Admin *adm = new Admin("Raphael", "Merkling", "aze", "Desmero", "machin@mail.com", model);
 	model->addUser(*adm);
 	
@@ -141,7 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_B_CONNECT:
 		{
 			if (model->checkLogin("Desmero", "aze")) {
-				MessageBox(hWnd, "Vous alez etre conneccté", "Woo!", MB_OK);
+				MessageBox(hWnd, "Vous alez etre connecctÃ©", "Woo!", MB_OK);
 			}
 			break;
 		}
