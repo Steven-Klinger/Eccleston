@@ -8,6 +8,7 @@ class Notification
 {
 public:
 	Notification();
+	Notification::Notification(string subject, string message, tm datereceive);
 	string getSubject();
 	string getMessage();
 	tm getDateRecive();

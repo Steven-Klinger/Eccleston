@@ -7,6 +7,13 @@ Notification::Notification()
 {
 }
 
+Notification::Notification(string subject, string message, tm datereceive)
+{
+	this->subject = subject;
+	this->message = message;
+	this->dateRecive = datereceive;
+}
+
 string Notification::getSubject()
 {
 	return this->subject;
