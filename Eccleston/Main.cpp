@@ -4,6 +4,8 @@
 #include "ModelEccleston.h"
 #include "User.h"
 #include "Admin.h"
+#include "Teacher.h"
+#include "Student.h"
 
 ModelEccleston* model;
 HINSTANCE hInst;
@@ -87,6 +89,9 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 							}
 		}
 			break;
+		case IDC_DECONNECT:
+			PostMessage(hwnd, WM_CLOSE, 0, 0);
+			return DialogBox(hInst, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 		case IDC_EXIT:
 			PostMessage(hwnd, WM_CLOSE, 0, 0);
 			break;
@@ -107,6 +112,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	hInst = hInstance;
 	model = new ModelEccleston();
 	model->addUser(Admin("Raphael", "Merkling", "aze", "Desmero", "plop@mail.fr", model));
+	model->addUser(Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model));
+	model->addUser(Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model));
+	model->addUser(Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model));
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 }

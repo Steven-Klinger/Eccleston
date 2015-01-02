@@ -9,8 +9,10 @@
 #define IDC_TEXT_LOGIN                  1001
 #define IDC_TEXT_PASSW                  1002
 #define IDC_CONNECT                     1003
-#define IDC_EXIT                        1004
-#define IDC_STATIC_USERNAME				1005
+#define IDC_DECONNECT                   1004
+#define IDC_EXIT                        1005
+#define IDC_STATIC_USERNAME				1006
+#define IDC_LIST_LESSON					1007
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
