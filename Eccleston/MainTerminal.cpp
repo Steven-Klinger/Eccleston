@@ -6,6 +6,8 @@
 #include "ModelEccleston.h"
 #include "Admin.h"
 #include "ModelEccleston.h"
+#include "Teacher.h"
+#include "Student.h"
 
 using namespace std;
 
@@ -89,8 +91,96 @@ int main(){
 
 				else if (status == 1){
 
+					std::cout << "Veuillez indiquer, nom, prenom, login, mot de passe et email, appuyez sur entrée entre chacun de ces éléments\n" << endl;
+					string name;
+					string firstname;
+					string login;
+					string password;
+					string email;
+
+					cin >> name;
+					cin >> firstname;
+					cin >> login;
+					cin >> password;
+					cin >> email;
+
+					Teacher *tea = new Teacher(name, firstname, login, password, email, mod);
+
+					if (mod->checkLoginAvailable(login)) //VERIFICATIONS
+					{
+
+						if (mod->checkEMailAvailable(email)){
+
+							if (tea->checkEmail()){
+
+								std::cout << "Utilisateur ajoute : \n" << name << "\n" << firstname << "\n" << login << "\n" << password << "\n" << email << "\n" << endl;
+
+							}
+							else{
+
+								std::cout << "L'email est incorrect, il manque un @ !!\n" << endl;
+
+							}
+						}
+
+						else{
+
+							std::cout << "L'email est deja pris!!\n" << endl;
+
+						}
+
+					}
+					else{
+
+						std::cout << "Le login est deja pris!!\n" << endl;
+					}
+
 				}
 				else if (status == 2){
+
+					std::cout << "Veuillez indiquer, nom, prenom, login, mot de passe et email, appuyez sur entrée entre chacun de ces éléments\n" << endl;
+					string name;
+					string firstname;
+					string login;
+					string password;
+					string email;
+
+					cin >> name;
+					cin >> firstname;
+					cin >> login;
+					cin >> password;
+					cin >> email;
+
+					Student *stu = new Student(name, firstname, login, password, email, mod);
+
+					if (mod->checkLoginAvailable(login)) //VERIFICATIONS
+					{
+
+						if (mod->checkEMailAvailable(email)){
+
+							if (stu->checkEmail()){
+
+								std::cout << "Utilisateur ajoute : \n" << name << "\n" << firstname << "\n" << login << "\n" << password << "\n" << email << "\n" << endl;
+
+							}
+							else{
+
+								std::cout << "L'email est incorrect, il manque un @ !!\n" << endl;
+
+							}
+						}
+
+						else{
+
+							std::cout << "L'email est deja pris!!\n" << endl;
+
+						}
+
+					}
+					else{
+
+						std::cout << "Le login est deja pris!!\n" << endl;
+					}
 
 				}
 				else {
