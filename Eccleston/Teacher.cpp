@@ -23,22 +23,23 @@ Teacher::~Teacher()
 {
 }
 
-void addLesson(string name, tm date1, tm date2, int i){
-
+//add a lesson 
+void Teacher::addLesson(string name, tm date1, tm date2, int i){
+	this->listLesson.push_back(Lesson(name, date1, date2, i));
 }
-
+//comprends pas cette fonction
 void addNotification(Lesson lesson, bool b1){
 
 }
 
-//vector<Lesson> getLesson(){
-	//return 0;
-//}
+vector<Lesson> Teacher::getLesson(){
+	return this->listLesson;
+}
 
 int getUserType(){
 	return 2;
 }
 
-void setLesson(int i, Lesson newLesson){
-
+void Teacher::setLesson(int i, Lesson newLesson){
+	listLesson.at(i) = newLesson;
 }

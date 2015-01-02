@@ -11,6 +11,8 @@
 #include <iostream>
 #include <ctime>
 
+
+
 class Teacher : public User
 {
 public:
@@ -22,6 +24,9 @@ public:
 	vector<Lesson> getLesson();
 	int getUserType();
 	void setLesson(int i, Lesson newLesson);
+
+protected:
+	vector<Lesson> listLesson;
 };
 
 #endif
