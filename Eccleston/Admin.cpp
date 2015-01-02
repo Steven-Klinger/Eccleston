@@ -17,7 +17,7 @@ Admin::~Admin()
 }
 
 void Admin::addNotification(Lesson lesson){
-
+	this->listNotification.push_back(Notification("Add of Lesson", "Lesson " + lesson.getName() + " requires your validation", tm()));
 }
 
 int Admin::getUserType(){
