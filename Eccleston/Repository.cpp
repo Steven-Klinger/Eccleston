@@ -18,12 +18,14 @@ void Repository::addWork(Work w1, Student st1){ // heu on fait quoi avec st1?
 	this->listWorks.push_back(w1);
 }
 
+//a mofier
 int checkFile(string){
-
+	return 0;
 }
 
+// a modifier
 int checkResourceName(string){
-
+	return 0;
 }
 
 string Repository::getPath(){

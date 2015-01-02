@@ -9,6 +9,7 @@ using namespace std;
 class Repository : public Resource{
 public:
 	Repository(string, int, string, tm);
+	~Repository();
 	void addWork(Work, Student);
 	int checkFile(string);
 	int checkResourceName(string);
