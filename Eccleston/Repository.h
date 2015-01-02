@@ -3,18 +3,18 @@
 
 #include <iostream>
 #include "Work.h"
-#include "Resource.h"
+#include "ResourceFile.h"
 using namespace std;
 
-class Repository : public Resource{
+class Repository : public ResourceFile{
 public:
 	Repository(string, int, string, tm);
 	~Repository();
 	void addWork(Work, Student);
 	int checkFile(string);
-	int checkResourceName(string);
+	int checkResourceFileName(string);
 	string getPath();
-	int getTypeResource();
+	int getTypeResourceFile();
 	vector<Work> getWorks();
 	void removeWork(Student);
 	void setPath(string);

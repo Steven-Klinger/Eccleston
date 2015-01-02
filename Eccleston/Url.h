@@ -4,12 +4,12 @@
 #include <iostream>
 using namespace std;
 
-#include "Resource.h"
+#include "ResourceFile.h"
 
-class Url : public Resource {
+class Url : public ResourceFile {
 public:
 	Url(string, int, string);
-	int getTypeResource();
+	int getTypeResourceFile();
 	string getUrl();
 	void setUrl(string);
 

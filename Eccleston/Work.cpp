@@ -21,7 +21,7 @@ Student Work::getStudent(){
 	return student;
 }
 
-int Work::getTypeResource(){
+int Work::getTypeResourceFile(){
 
 	return 4;
 

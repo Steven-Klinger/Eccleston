@@ -12,7 +12,7 @@ public:
 	Work(string, int, string);
 	int getMark();
 	Student getStudent();
-	int getTypeResource();
+	int getTypeResourceFile();
 	void setMark(int);
 
 protected:

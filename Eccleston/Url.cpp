@@ -2,11 +2,11 @@
 #include "Url.h"
 #include <string>
 
-Url::Url(string name, int visible, string url) : Resource(name, visible){
+Url::Url(string name, int visible, string url) : ResourceFile(name, visible){
 	this->url = url;
 }
 
-int Url::getTypeResource(){
+int Url::getTypeResourceFile(){
 
 	return 0;
 

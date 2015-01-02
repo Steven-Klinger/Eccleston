@@ -1,10 +1,10 @@
 #include<iostream>
 #include "File.h"
 #include <string>
-#include "Resource.h"
+#include "ResourceFile.h"
 
 
-File::File(string name, int visible, string path) : Resource(name, visible){
+File::File(string name, int visible, string path) : ResourceFile(name, visible){
 	this->path = path;
 }
 

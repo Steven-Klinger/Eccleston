@@ -1,11 +1,11 @@
 #ifndef FILE_H
 #define FILE_H
 #include <iostream>
-#include "Resource.h"
+#include "ResourceFile.h"
 
 using namespace std;
 
-class File : public Resource
+class File : public ResourceFile
 {
 public:
 	File(string, int, string);

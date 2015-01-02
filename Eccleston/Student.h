@@ -3,7 +3,7 @@
 
 #include "User.h"
 #include "Lesson.h"
-#include "Resource.h"
+#include "ResourceFile.h"
 #include "Notification.h"
 #include <vector>
 #include <iostream>
@@ -23,7 +23,7 @@ public:
 	~Student();
 	void addLesson(Lesson);
 	void addNotification(Lesson); 
-	void addNotification(Resource, Lesson); 
+	void addNotification(ResourceFile, Lesson); 
 	void addNotification(Work*);// à compléter plus tard
 	vector<Lesson> getLessons(); // TODO à vérifier
 	int getUserType();

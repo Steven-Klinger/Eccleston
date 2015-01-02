@@ -1,6 +1,6 @@
 #include "Repository.h"
 
-Repository::Repository(string name , int visible,string path, tm datefin) : Resource(name, visible)
+Repository::Repository(string name , int visible,string path, tm datefin) : ResourceFile(name, visible)
 {
 	this->name = name;
 	this->visible = visible;
@@ -24,7 +24,7 @@ int checkFile(string){
 }
 
 // a modifier
-int checkResourceName(string){
+int checkResourceFileName(string){
 	return 0;
 }
 
@@ -32,7 +32,7 @@ string Repository::getPath(){
 	return this->path;
 }
 
-int Repository::getTypeResource(){
+int Repository::getTypeResourceFile(){
 	return 0; // c'est cb pour les ressources ?
 }
 

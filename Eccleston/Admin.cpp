@@ -2,7 +2,7 @@
 
 
 Admin::Admin(string firstName, string name, string password, string login, string eMail, ModelEccleston* model) : User(firstName, name,
-	password, login, email, model)
+	password, login, eMail, model)
 {
 	this->firstName = firstName;
 	this->name = name;

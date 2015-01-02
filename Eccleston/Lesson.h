@@ -5,7 +5,7 @@
 #include <vector>
 class Student;
 class Teacher;
-#include "Resource.h"
+#include "ResourceFile.h"
 using namespace std;
 
 class Lesson
@@ -16,29 +16,29 @@ public:
 	Lesson(string, int);
 	Lesson();
 
-	void addResource(Resource*);
+	void addResourceFile(ResourceFile*);
 	void addStudent(Student*);
 	void addStudentMainList(Student*);
 	void addStudentSecondaryList(Student*);
 	int checkDate(tm);
 	int checkFile(string);
 	int checkRepository(string);
-	int checkResourceName(string);
+	int checkResourceFileName(string);
 	int checkUrl(string);
 	tm getDateBegin() const { return this->dateBegin; }
 	tm getDateEnd() const { return this->dateEnd; }
 	int getMaxStudents() const{ return this->maxStudents; }
 	string getName() const { return this->name; }
 	int getNumbreStudent();
-	Resource* getResource(int);
-	vector<Resource*> getResources();
+	ResourceFile* getResourceFile(int);
+	vector<ResourceFile*> getResourceFiles();
 	Student* getStudentSecondaryList(int);
 	vector<Student*> getStudents();
 	Teacher* getTeacher() { return teacher; }
 	int isMainListFull();
 	int isStudentMainList(Student*);
 	int isValidated() const { return validate; }
-	void removeResource(Resource*);
+	void removeResourceFile(ResourceFile*);
 	void removeStudent(Student*);
 	void removeStudentMainList(Student*);
 	void removeStudentSecondaryList(Student*);
@@ -59,7 +59,7 @@ protected:
 	int maxStudents;
 	std::vector<Student*> mainListStudent;
 	std::vector<Student*> secondaryListStudent;
-	std::vector<Resource*> listResources;
+	std::vector<ResourceFile*> listResourceFiles;
 	Teacher* teacher;
 };
 

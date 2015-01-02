@@ -37,8 +37,8 @@ void Student::addNotification(Lesson lesson){
 	this->listNotification.push_back(notif);
 }
 
-void Student::addNotification(Resource res, Lesson les){
-	string subject = "Add Resource";
+void Student::addNotification(ResourceFile res, Lesson les){
+	string subject = "Add ResourceFile";
 	string message = "Add of Ressource " + res.getName() + " in " + les.getName();
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);

@@ -5,7 +5,7 @@
 
 #include "User.h"
 #include "Lesson.h"
-#include "Resource.h"
+#include "ResourceFile.h"
 #include "Notification.h"
 //#include "Work.h"
 #include <iostream>

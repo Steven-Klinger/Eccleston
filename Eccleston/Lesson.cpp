@@ -4,7 +4,7 @@
 #include <ctime>
 #include <vector>
 
-#include "Resource.h"
+#include "ResourceFile.h"
 #include "Teacher.h"
 #include "Student.h"
 
@@ -38,8 +38,8 @@ Lesson::Lesson(string name, int maxStudents){
 	teacher = NULL;
 }
 
-void Lesson::addResource(Resource* res) {
-	this->listResources.push_back(res);
+void Lesson::addResourceFile(ResourceFile* res) {
+	this->listResourceFiles.push_back(res);
 }
 
 void Lesson::addStudent(Student* stud) {
@@ -66,12 +66,12 @@ int Lesson::getNumbreStudent() {
 	return num;
 }
 
-Resource* Lesson::getResource(int index) {
-	return listResources.at(index);
+ResourceFile* Lesson::getResourceFile(int index) {
+	return listResourceFiles.at(index);
 }
 
-vector<Resource*> Lesson::getResources() {
-	return listResources;
+vector<ResourceFile*> Lesson::getResourceFiles() {
+	return listResourceFiles;
 }
 
 vector<Student*> Lesson::getStudents() {
@@ -108,10 +108,10 @@ int Lesson::isStudentMainList(Student* stud) {
 	return studPresent;
 }
 
-void Lesson::removeResource(Resource* oldRes) {
-	for (unsigned int i = 0; i < listResources.size(); i++){
-		if (listResources.at(i)->getName() == oldRes->getName()){
-			listResources.erase(listResources.begin() + i);
+void Lesson::removeResourceFile(ResourceFile* oldRes) {
+	for (unsigned int i = 0; i < listResourceFiles.size(); i++){
+		if (listResourceFiles.at(i)->getName() == oldRes->getName()){
+			listResourceFiles.erase(listResourceFiles.begin() + i);
 		}
 	}
 }
