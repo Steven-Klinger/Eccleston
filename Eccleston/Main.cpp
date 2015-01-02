@@ -147,7 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_B_CONNECT:
 		{
 			if (model->checkLogin("Desmero", "aze")) {
-				MessageBox(hWnd, "Vous alez etre conneccté", "Woo!", MB_OK);
+				MessageBox(hWnd, "Vous allez être connecté", "Woo!", MB_OK);
 			}
 			break;
 		}

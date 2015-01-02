@@ -40,7 +40,7 @@ void ModelEccleston::addUser(User user){
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){ // if file exists
 
-			cout << "insertion fichier users.tx ok" << endl;
+			cout << "insertion fichier users.txt ok" << endl;
 
 			string firstName, name, login, password, eMail;
 			name = user.getName();
@@ -52,7 +52,7 @@ void ModelEccleston::addUser(User user){
 			file.close(); //close the file
 		}
 		else {
-			cout << "insertion fichier users.tx PAS ok" << endl;
+			cout << "insertion fichier users.txt PAS ok" << endl;
 		}
 	}
 }

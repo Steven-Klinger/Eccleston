@@ -24,7 +24,7 @@ int WinMain(HINSTANCE cetteInstance, HINSTANCE precedenteInstance,
 	// On prévoit quand même le cas où ça échoue
 	if (!RegisterClass(&classeFenetre)) return FALSE;
 
-	fenetrePrincipale = CreateWindow("classeF", "Notification Leçon ajotuée!", WS_OVERLAPPEDWINDOW,
+	fenetrePrincipale = CreateWindow("classeF", "Notification Leçon ajoutée!", WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
 		NULL, NULL, cetteInstance, NULL);
 	if (!fenetrePrincipale) return FALSE;
