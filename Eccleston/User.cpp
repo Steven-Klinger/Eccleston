@@ -45,7 +45,17 @@ void User::setEmail(string s){
 }
 
 int User::checkEmail(){
-	return 0;
+	std::string a = "@";
+	std::string b = email;
+
+	std::size_t found = b.find(a);
+	
+	if (found == std::string::npos){
+		return 1;
+	}
+	else{
+		return 0;
+	}
 }
 
 int User::getUserType(){
