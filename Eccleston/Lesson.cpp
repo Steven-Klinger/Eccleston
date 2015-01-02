@@ -70,12 +70,23 @@ Resource* Lesson::getResource(int index) {
 	return listResources.at(index);
 }
 
-Student* Lesson::getStudentSecondaryList(int index) {
-	return this->secondaryListStudent.at(index);
-}
-
 vector<Resource*> Lesson::getResources() {
 	return listResources;
+}
+
+vector<Student*> Lesson::getStudents() {
+	std::vector<Student*> listStudent;
+	for (Student* stu : mainListStudent){
+		listStudent.push_back(stu);
+	}
+	for (Student* stu : secondaryListStudent){
+		listStudent.push_back(stu);
+	}
+	return listStudent;
+}
+
+Student* Lesson::getStudentSecondaryList(int index) {
+	return this->secondaryListStudent.at(index);
 }
 
 int Lesson::isMainListFull() {

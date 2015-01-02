@@ -33,7 +33,7 @@ public:
 	Resource* getResource(int);
 	vector<Resource*> getResources();
 	Student* getStudentSecondaryList(int);
-//	vector<Student*> getStudents();
+	vector<Student*> getStudents();
 	Teacher* getTeacher() { return teacher; }
 	int isMainListFull();
 	int isStudentMainList(Student*);
@@ -57,7 +57,6 @@ protected:
 	tm dateEnd;
 	int validate;
 	int maxStudents;
-	/* soucis à regler ici */
 	std::vector<Student*> mainListStudent;
 	std::vector<Student*> secondaryListStudent;
 	std::vector<Resource*> listResources;
