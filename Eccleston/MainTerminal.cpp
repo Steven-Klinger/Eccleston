@@ -25,7 +25,24 @@ int main(){
 
 	if (mod->checkLogin(login, password) && (adm->checkEmail() == 1)){
 
-		std::cout << "Connexion etablie !\n" << "Liste des fonctions disponibles :\n\n" << "1. Ajouter un Utilisateur\n" << "2. Supprimer un Utilisateur\n\n" << endl;
+		std::cout << "Connexion etablie !\n\n" << "Liste des fonctions disponibles :\n\n" << endl;
+
+		if (adm->getUserType() == 0){ //ADMIN
+
+			std::cout << "1. Ajouter un Utilisateur\n" << "2. Supprimer un Utilisateur\n" << "3. Consulter les notifications\n" << "4. Se deconnecter\n\n" << endl;
+		}
+
+		else if (adm->getUserType() == 2) { //STUDENT
+
+			std::cout << "1. Visualiser Cours" << "2. Consulter les notifications\n" << "3. S'inscrire a un cours\n" << "4. Se desinscrire d'un cours\n" << "5. Se deconnecter\n\n" << endl;
+
+		}
+		
+		else{ //TEACHER
+
+			std::cout << "1. Visualiser Liste de cours" << "2. Proposer cours\n" << "3. Modifier cours\n" << "4. Se deconnecet\n\n" << endl;
+
+		}
 
 	}
 	else
