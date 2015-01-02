@@ -51,7 +51,7 @@ int User::checkEmail(){
 
 	std::size_t found = b.find(a);
 	
-	if (found == std::string::npos){
+	if (found != std::string::npos){
 		return 1;
 	}
 	else{
