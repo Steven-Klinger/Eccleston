@@ -2,6 +2,7 @@
 #define WORK_H
 #include <iostream>
 #include "Student.h"
+#include "File.h"
 
 using namespace std;
 

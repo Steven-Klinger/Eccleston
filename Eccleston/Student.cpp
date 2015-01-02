@@ -26,35 +26,45 @@ Student::~Student()
 {
 }
 
-
+// comprends plus cette fonction *Erwan
 void Student::addLesson(string name, tm date1, tm date2){
 	
-	//this->mde.
 }
 
 void Student::addNotification(Lesson lesson){
-
+	string subject = "Notification Lesson";
+	string message = "add in Lesson " + lesson.getName();
+	Notification notif = Notification(subject, message, tm());
+	this->listNotification.push_back(notif);
 }
 
 void Student::addNotification(Resource res){
-
+	string subject = "Notification On resource";
+	string message = "add of Ressource " + res.getName();
+	Notification notif = Notification(subject, message, tm());
+	this->listNotification.push_back(notif);
 }
 
-//TODO après création de work
-//id Student::addNotification(Work work){
-
-//
+//à compléter
+void Student::addNotification(Work* work){
+	string subject = "Notification of Work";
+	string message = "add of work " ;
+	Notification notif = Notification(subject, message, tm());
+	this->listNotification.push_back(notif);
+}
 
 vector<Lesson> Student::getLessons(){
 	return listLessons;
 }
 
 int Student::getUserType(){
-	return 1; // 0 pour student ?
+	return 1; // 1 pour student ?
 }
 
-//Work Student::getWork(int){
-	//return 0;
-//}
+Work* Student::getWork(int i){
+	return listWork.at(i);
+}
 
-//void setWork(int,Work); // à compléter plus tard
+void Student::setWork(int i, Work* nWork){
+	listWork.at(i) =  nWork;
+}
