@@ -23,17 +23,15 @@ int main(){
 	string password;
 	getline(cin, password);
 
-	if (mod->checkLogin(login, password)){
-		
-		std::cout << "Connexion etablie !\n" << "Liste des fonctions disponibles :\n\n" << "1. Ajouter un Utilisateur\n" << "2. Supprimer un Utilisateur\n\n" << endl ;
+	if (mod->checkLogin(login, password) && (adm->checkEmail() == 1)){
+
+		std::cout << "Connexion etablie !\n" << "Liste des fonctions disponibles :\n\n" << "1. Ajouter un Utilisateur\n" << "2. Supprimer un Utilisateur\n\n" << endl;
 
 	}
 	else
 	{
 		std::cout << "Connexion impossible !\n" << endl;
 	}
-
-
 
 	system("PAUSE");
 }
