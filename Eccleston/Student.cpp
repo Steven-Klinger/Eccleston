@@ -5,7 +5,7 @@
 
 
 Student::Student(string firstName, string Name, string password, string login, string email, ModelEccleston* model) : User(firstName,Name,
-				password,login,email, model)
+				password,login,email, model, 2)
 {
 	this->firstName = firstName;
 	this->name = Name;
@@ -53,10 +53,6 @@ void Student::addNotification(Work* work){
 
 vector<Lesson> Student::getLessons(){
 	return listLessons;
-}
-
-int Student::getUserType(){
-	return 2;
 }
 
 Work* Student::getWork(int i){

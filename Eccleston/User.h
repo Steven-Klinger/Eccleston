@@ -11,14 +11,14 @@ using namespace std;
 class User{
 public:
 	User();
-	User(string, string, string, string, string, ModelEccleston*);
+	User(string, string, string, string, string, ModelEccleston*, int);
 	int checkEmail();
 	string getEmail() const{ return (this->email); }
 	string getFirstName() const{ return this->firstName; }
 	string getLogin() const{ return this->login; }
 	string getName() const { return this->name; }
 	string getPassword() const{ return this->password; }
-	int getUserType();
+	int getUserType() const{ return this->userType; };
 	void setEmail(string);
 	void setFirstName(string);
 	void setLogin(string);
@@ -33,6 +33,7 @@ protected:
 	string password;
 	string login;
 	string email;
+	int userType;
 	std::vector<Notification> listNotification;
 	ModelEccleston* mde;
 };

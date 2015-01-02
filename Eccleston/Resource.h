@@ -3,11 +3,14 @@
 // Utilisé par projResource.rc
 //
 #define IDD_CONNEXION                   101
-#define IDD_MAIN                        102
+#define IDD_MAIN_ADMIN                  102
+#define IDD_MAIN_TEACHER                103
+#define IDD_MAIN_STUDENT                104
 #define IDC_TEXT_LOGIN                  1001
 #define IDC_TEXT_PASSW                  1002
 #define IDC_CONNECT                     1003
 #define IDC_EXIT                        1004
+#define IDC_STATIC_USERNAME				1005
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

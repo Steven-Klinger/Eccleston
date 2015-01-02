@@ -16,7 +16,7 @@ ModelEccleston::ModelEccleston()
 			string firstName, name, login, password, eMail;
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
-				this->listUsers.push_back(User(name, firstName, login, password, eMail, this));
+				this->listUsers.push_back(User(name, firstName, login, password, eMail, this, -1));
 			}
 		}
 		file.close(); //close the file
@@ -184,6 +184,10 @@ void ModelEccleston::removeUser(User user){
 	
 }
 
-void ModelEccleston::setUser(int id, User user){
+void ModelEccleston::setCurrentUser(User user) {
+	this->currentUser = user;
+}
 
+void ModelEccleston::setUser(int id, User user){
+	this->listUsers.at(id) = user;
 }

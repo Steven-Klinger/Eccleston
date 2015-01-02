@@ -26,7 +26,6 @@ public:
 	void addNotification(ResourceFile, Lesson); 
 	void addNotification(Work*);// à compléter plus tard
 	vector<Lesson> getLessons(); // TODO à vérifier
-	int getUserType();
 	Work* getWork(int); 
 	void setWork(int,Work*); // à compléter plus tard
 

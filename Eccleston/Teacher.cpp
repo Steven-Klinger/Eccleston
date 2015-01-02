@@ -9,7 +9,7 @@ Teacher::Teacher() : User() {
 }
 
 Teacher::Teacher(string firstName, string name, string password, string login, string email, ModelEccleston* model) : User(firstName, name,
-	password, login, email, model)
+	password, login, email, model, 1)
 {
 	this->firstName = firstName;
 	this->name = name;
@@ -44,10 +44,6 @@ Lesson Teacher::getLesson(int index){
 
 vector<Lesson> Teacher::getLessons(){
 	return this->listLesson;
-}
-
-int getUserType(){
-	return 1;
 }
 
 void Teacher::setLesson(int i, Lesson newLesson){

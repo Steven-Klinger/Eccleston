@@ -37,6 +37,7 @@ public:
 	vector<User> getUsers(); // non presente dans le contrat 
 	void removeLesson(Lesson lesson);
 	void removeUser(User user);
+	void setCurrentUser(User);
 	void setUser(int id, User user);
 
 private:

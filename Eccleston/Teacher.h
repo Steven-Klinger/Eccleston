@@ -23,7 +23,6 @@ public:
 	void addNotification(Lesson lesson, bool validate);
 	Lesson getLesson(int);
 	vector<Lesson> getLessons();
-	int getUserType();
 	void setLesson(int i, Lesson newLesson);
 
 protected:

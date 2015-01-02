@@ -18,6 +18,5 @@ public:
 	Admin(string firstName, string name, string password, string login, string eMail, ModelEccleston* model);
 	~Admin();
 	void addNotification(Lesson);
-	int getUserType();
 };
 #endif

@@ -11,9 +11,10 @@ User::User(){
 	this->password = "";
 	this->email = ""; 
 	//this->mde = &(new ModelEccleston());
+	this->userType = -1;
 }
 
-User::User(string name, string firstName, string login, string password, string email, ModelEccleston* model){
+User::User(string name, string firstName, string login, string password, string email, ModelEccleston* model, int userType){
 	
 	this->name = name;
 	this->firstName = firstName;
@@ -21,6 +22,7 @@ User::User(string name, string firstName, string login, string password, string 
 	this->password = password;
 	this->email = email;
 	this->mde = model;
+	this->userType = userType;
 }
 
 
@@ -57,10 +59,6 @@ int User::checkEmail(){
 	else{
 		return 0;
 	}
-}
-
-int User::getUserType(){
-	return 0;
 }
 
 User::~User(){
