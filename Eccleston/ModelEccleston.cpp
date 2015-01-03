@@ -29,7 +29,7 @@ ModelEccleston::~ModelEccleston()
 {
 }
 
-void ModelEccleston::addLesson(Lesson lesson){
+void ModelEccleston::addLesson(Lesson* lesson){
 	listLessons.push_back(lesson);
 }
 
@@ -124,8 +124,8 @@ bool ModelEccleston::checkEMailAvailable(string email){
 /* retrun true if the lesson is not already in listLesson*/
 bool ModelEccleston::checkLesson(string lesson){
 	bool lessonCheck = true;
-	for (Lesson les : listLessons){
-		if (les.getName() == lesson){
+	for (Lesson* les : listLessons){
+		if (les->getName() == lesson){
 			lessonCheck = false;
 		}
 	}
@@ -168,7 +168,7 @@ User ModelEccleston::getCurrentUser(){
 	return this->currentUser;
 }
 
-vector<Lesson> ModelEccleston::getOpenLesson(){
+vector<Lesson*> ModelEccleston::getOpenLesson(){
 	return this->listLessons; // A MODIFIER !!!
 }
 
@@ -234,24 +234,24 @@ Student ModelEccleston::getStudentByLogin(string login){
 	return usr;
 }
 
-vector<Lesson> ModelEccleston::getWaitingLessons(){
-	vector<Lesson> waitingLesson;
-	for (Lesson les : listLessons) {
-		if (!les.isValidated()) {
+vector<Lesson*> ModelEccleston::getWaitingLessons(){
+	vector<Lesson*> waitingLesson;
+	for (Lesson* les : listLessons) {
+		if (!les->isValidated()) {
 			waitingLesson.push_back(les);
 		}
 	}
 	return waitingLesson;
 }
 
-void ModelEccleston::removeLesson(Lesson lesson){
+void ModelEccleston::removeLesson(Lesson* lesson){
 	int i = 0;
-	if (listLessons.at(0).getName() == lesson.getName()){
+	if (listLessons.at(0)->getName() == lesson->getName()){
 		listLessons.erase(listLessons.begin() + 0);
 	}
 	else {
 		for (unsigned int i = 1; i < listLessons.size(); i++){
-			if (listLessons.at(i).getName() == lesson.getName()){
+			if (listLessons.at(i)->getName() == lesson->getName()){
 				listLessons.erase(listLessons.begin() + i);
 			}
 		}

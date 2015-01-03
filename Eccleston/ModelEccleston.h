@@ -23,7 +23,7 @@ public:
 
 	ModelEccleston();
 	~ModelEccleston();
-	void addLesson(Lesson lesson);
+	void addLesson(Lesson* lesson);
 	void addUser(Admin user);
 	void addUser(Teacher user);
 	void addUser(Student user);
@@ -38,15 +38,15 @@ public:
 	Admin getCurrentAdmin() { return currentAdmin; }
 	Teacher getCurrentTeacher() { return currentTeacher; }
 	Student getCurrentStudent() { return currentStudent; }
-	std::vector<Lesson> getOpenLesson();
+	std::vector<Lesson*> getOpenLesson();
 	User getUser(int i);
 	User getUserByLogin(string login);
 	Admin getAdminByLogin(string login);
 	Teacher getTeacherByLogin(string login);
 	Student getStudentByLogin(string login);
-	std::vector<Lesson> getWaitingLessons();
+	std::vector<Lesson*> getWaitingLessons();
 	vector<User> getUsers(); // non presente dans le contrat 
-	void removeLesson(Lesson lesson);
+	void removeLesson(Lesson* lesson);
 	void removeUser(Admin user);
 	void removeUser(Teacher user);
 	void removeUser(Student user);
@@ -62,7 +62,7 @@ private:
 	std::vector<Admin> listAdmin;
 	std::vector<Teacher> listTeacher;
 	std::vector<Student> listStudent;
-	std::vector<Lesson> listLessons;
+	std::vector<Lesson*> listLessons;
 };
 
 #endif

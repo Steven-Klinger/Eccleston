@@ -22,8 +22,8 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  {
 						  case 0: {
 									  fullName.append(" : Administrateur");
-									  for (Lesson les : model->getWaitingLessons()) {
-										  string name = les.getName();
+									  for (Lesson* les : model->getWaitingLessons()) {
+										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 									  }
@@ -153,9 +153,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	model->addUser(*Steven);
 	model->addUser(*Nicolas);
 
-	model->addLesson(*CPOA);
-	model->addLesson(*Algo);
-	model->addLesson(*toucan);
+	model->addLesson(CPOA);
+	model->addLesson(Algo);
+	model->addLesson(toucan);
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 }
