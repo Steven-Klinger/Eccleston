@@ -120,6 +120,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 			break;
 		case IDC_LESSON:
 		{
+						   PostMessage(hwnd, WM_CLOSE, 0, 0);
 						   int userType = model->getCurrentUserType();
 						   switch (userType)
 						   {
@@ -136,6 +137,27 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									   break;
 						   }
 						   }
+		}
+		case IDC_MAIN:
+		{
+						 PostMessage(hwnd, WM_CLOSE, 0, 0);
+						 int userType = model->getCurrentUserType();
+						 switch (userType)
+						 {
+						 case 0: {
+									 return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
+									 break;
+						 }
+						 case 1: {
+									 return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_TEACHER), NULL, DlgProc);
+									 break;
+						 }
+						 case 2: {
+									 return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_STUDENT), NULL, DlgProc);
+									 break;
+						 }
+						 }
+
 		}
 		case IDC_DECONNECT:
 			PostMessage(hwnd, WM_CLOSE, 0, 0);

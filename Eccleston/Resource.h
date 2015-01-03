@@ -18,7 +18,8 @@
 #define IDC_LIST_LESSON					1007
 #define IDC_LESSON       				1008
 #define IDC_LIST_RESSOURCES             1009
-#define IDC_ADDUSER                     1102
+#define IDC_MAIN						1010
+#define IDC_ADDUSER                     1101
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
