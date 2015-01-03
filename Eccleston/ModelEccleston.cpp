@@ -150,7 +150,13 @@ User ModelEccleston::getUserByLogin(string login){
 }
 
 vector<Lesson> ModelEccleston::getWaitingLessons(){
-	return this->listLessons; // A MODIFIER !!!
+	vector<Lesson> waitingLesson;
+	for (Lesson les : listLessons) {
+		if (!les.isValidated()) {
+			waitingLesson.push_back(les);
+		}
+	}
+	return waitingLesson;
 }
 
 void ModelEccleston::removeLesson(Lesson lesson){

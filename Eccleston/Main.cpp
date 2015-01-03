@@ -22,6 +22,11 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  {
 						  case 0: {
 									  fullName.append(" : Administrateur");
+									  for (Lesson les : model->getWaitingLessons()) {
+										  string name = les.getName();
+										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
+										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
+									  }
 									  break;
 						  }
 						  case 1: {
@@ -52,6 +57,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 								buf = (char*)GlobalAlloc(GPTR, len + 1);
 								GetDlgItemText(hwnd, IDC_TEXT_LOGIN, buf, len + 1);
 								login = buf;
+								GlobalFree((HANDLE)buf);
 							}
 							len = GetWindowTextLength(GetDlgItem(hwnd, IDC_TEXT_PASSW));
 							if (len > 0) {
@@ -59,6 +65,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 								buf = (char*)GlobalAlloc(GPTR, len + 1);
 								GetDlgItemText(hwnd, IDC_TEXT_PASSW, buf, len + 1);
 								passW = buf;
+								GlobalFree((HANDLE)buf);
 							}
 							if (model->checkLogin(login, passW)) {
 								User user = model->getUserByLogin(login);
@@ -115,6 +122,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	model->addUser(Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model));
 	model->addUser(Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model));
 	model->addUser(Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model));
+	model->addLesson(Lesson("CPOA", 50));
+	model->addLesson(Lesson("Algo", 50));
+	Lesson toucan = Lesson("Toucan", 50);
+	toucan.setValidate(1);
+	model->addLesson(toucan);
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 }
