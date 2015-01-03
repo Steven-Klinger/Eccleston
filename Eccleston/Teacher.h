@@ -19,14 +19,14 @@ public:
 	Teacher();
 	Teacher(string firstName, string name, string password, string login, string email, ModelEccleston* model);
 	~Teacher();
-	void addLesson(string name, tm date1, tm date2, int maxStudent); 
-	void addNotification(Lesson lesson, bool validate);
-	Lesson getLesson(int);
-	vector<Lesson> getLessons();
-	void setLesson(int i, Lesson newLesson);
+	void addLesson(Lesson* lesson); 
+	void addNotification(Lesson* lesson, bool validate);
+	Lesson* getLesson(int);
+	vector<Lesson*> getLessons();
+	void setLesson(int i, Lesson* newLesson);
 
 protected:
-	vector<Lesson> listLesson;
+	vector<Lesson*> listLesson;
 };
 
 #endif

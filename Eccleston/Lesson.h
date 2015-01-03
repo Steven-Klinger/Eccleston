@@ -12,8 +12,8 @@ class Lesson
 {
 
 public:
-	Lesson(string, tm, tm, int);
-	Lesson(string, int);
+	Lesson(string, Teacher*, tm, tm, int);
+	Lesson(string, Teacher*, int);
 	Lesson();
 
 	void addResourceFile(ResourceFile*);

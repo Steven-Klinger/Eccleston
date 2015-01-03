@@ -20,22 +20,22 @@ Lesson::Lesson(){
 Lesson::~Lesson(){
 }
 
-Lesson::Lesson(string name, tm dateBegin, tm dateEnd, int maxStudents){
+Lesson::Lesson(string name, Teacher* teacher, tm dateBegin, tm dateEnd, int maxStudents){
 	this->name = name;
 	this->dateBegin = dateBegin;
 	this->dateEnd = dateEnd;
 	this->validate = 0;
 	this->maxStudents = maxStudents;
-	teacher = NULL;
+	this->teacher = teacher;
 }
 
-Lesson::Lesson(string name, int maxStudents){
+Lesson::Lesson(string name, Teacher* teacher, int maxStudents){
 	this->name = name;
 	this->dateBegin = tm();
 	this->dateEnd = tm();
 	this->validate = 0;
 	this->maxStudents = maxStudents;
-	teacher = NULL;
+	this->teacher = teacher;
 }
 
 void Lesson::addResourceFile(ResourceFile* res) {

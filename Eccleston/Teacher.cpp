@@ -24,28 +24,28 @@ Teacher::~Teacher()
 }
 
 //add a lesson 
-void Teacher::addLesson(string name, tm date1, tm date2, int i){
-	this->listLesson.push_back(Lesson(name, date1, date2, i));
+void Teacher::addLesson(Lesson* lesson){
+	this->listLesson.push_back(lesson);
 }
 
-void Teacher::addNotification(Lesson lesson, bool validated)
+void Teacher::addNotification(Lesson* lesson, bool validated)
 {
 	if (validated) {
-		this->listNotification.push_back(Notification("Lesson validated", "Lesson " + lesson.getName() + " is validated", tm()));
+		this->listNotification.push_back(Notification("Lesson validated", "Lesson " + lesson->getName() + " is validated", tm()));
 	}
 	else {
-		this->listNotification.push_back(Notification("Lesson rejected", "Lesson " + lesson.getName() + " is rejected", tm()));
+		this->listNotification.push_back(Notification("Lesson rejected", "Lesson " + lesson->getName() + " is rejected", tm()));
 	}
 }
 
-Lesson Teacher::getLesson(int index){
+Lesson* Teacher::getLesson(int index){
 	return this->listLesson.at(index);
 }
 
-vector<Lesson> Teacher::getLessons(){
+vector<Lesson*> Teacher::getLessons(){
 	return this->listLesson;
 }
 
-void Teacher::setLesson(int i, Lesson newLesson){
+void Teacher::setLesson(int i, Lesson* newLesson){
 	listLesson.at(i) = newLesson;
 }
