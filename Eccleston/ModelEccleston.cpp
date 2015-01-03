@@ -22,6 +22,7 @@ ModelEccleston::ModelEccleston()
 		file.close(); //close the file
 	}
 */	
+	this->currentUserType = -1;
 }
 
 
@@ -162,10 +163,6 @@ bool ModelEccleston::checkNameAvailable(string s1, string s2){
 
 Admin* ModelEccleston::getAdmin(){
 	return listAdmin.at(0);
-}
-
-User ModelEccleston::getCurrentUser(){
-	return this->currentUser;
 }
 
 vector<Lesson*> ModelEccleston::getOpenLesson(){

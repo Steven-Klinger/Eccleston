@@ -34,7 +34,7 @@ public:
 	bool checkLoginAvailable(string login);
 	bool checkNameAvailable(string s1, string s2);
 	Admin* getAdmin();
-	User getCurrentUser();
+	int getCurrentUserType() { return this->currentUserType; }
 	Admin* getCurrentAdmin() { return currentAdmin; }
 	Teacher* getCurrentTeacher() { return currentTeacher; }
 	Student* getCurrentStudent() { return currentStudent; }
@@ -50,12 +50,12 @@ public:
 	void removeUser(Admin* user);
 	void removeUser(Teacher* user);
 	void removeUser(Student* user);
-	void setCurrentUser(Admin* admin) { this->currentAdmin = admin; this->currentUser = *admin; }
-	void setCurrentUser(Teacher* teacher) { this->currentTeacher = teacher; this->currentUser = *teacher; }
-	void setCurrentUser(Student* student) { this->currentStudent = student; this->currentUser = *student; }
+	void setCurrentUser(Admin* admin) { this->currentAdmin = admin; this->currentUserType = 0; }
+	void setCurrentUser(Teacher* teacher) { this->currentTeacher = teacher; this->currentUserType = 1; }
+	void setCurrentUser(Student* student) { this->currentStudent = student; this->currentUserType = 2; }
 
 private:
-	User currentUser;
+	int currentUserType;
 	Admin* currentAdmin;
 	Teacher* currentTeacher;
 	Student* currentStudent;

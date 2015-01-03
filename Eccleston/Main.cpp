@@ -17,11 +17,14 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 	case WM_INITDIALOG:
 	{
 						  // This is where we set up the dialog box, and initialise any default values
-						  string fullName = model->getCurrentUser().getFirstName() + " " + model->getCurrentUser().getName() + " : ";
-						  switch (model->getCurrentUser().getUserType())
+						  int type = model->getCurrentUserType();
+						  //int type = model->getCurrentUser().getUserType();
+						  string fullName;
+						  switch (type)
 						  {
 						  case 0: {
-									  fullName.append(" : Administrateur");
+									  Admin* admin = model->getCurrentAdmin();
+									  fullName.append(admin->getFirstName() + " " + admin->getName() + " : Administrateur");
 									  for (Lesson* les : model->getWaitingLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
@@ -31,7 +34,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  }
 						  case 1: {
 									  Teacher* teacher = model->getCurrentTeacher();
-									  fullName.append(" : Professeur");
+									  fullName.append(teacher->getFirstName() + " " + teacher->getName() + " : Professeur");
 									  for (Lesson* les : teacher->getLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
@@ -41,7 +44,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  }
 						  case 2: {
 									  Student* student = model->getCurrentStudent();
-									  fullName.append(" : Étudiant");
+									  fullName.append(student->getFirstName() + " " + student->getName() + " : Étudiant");
 									  for (Lesson* les : student->getLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
