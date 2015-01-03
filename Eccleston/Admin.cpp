@@ -11,6 +11,14 @@ Admin::Admin(string firstName, string name, string password, string login, strin
 	this->email = eMail;
 }
 
+Admin::Admin() : User()
+{
+	this->firstName = "";
+	this->name = "";
+	this->password = "";
+	this->login = "";
+	this->email = "";
+}
 
 Admin::~Admin()
 {

@@ -7,7 +7,7 @@
 ModelEccleston::ModelEccleston()
 {
 	// fill the list of users with data in users.txt file
-	string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+/*	string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
 	std::ifstream file(path.c_str(), ios::in);
 	if (file){ // if file exists
 		string line;
@@ -21,7 +21,7 @@ ModelEccleston::ModelEccleston()
 		}
 		file.close(); //close the file
 	}
-	
+*/	
 }
 
 
@@ -33,9 +33,57 @@ void ModelEccleston::addLesson(Lesson lesson){
 	listLessons.push_back(lesson);
 }
 
-void ModelEccleston::addUser(User user){
+void ModelEccleston::addUser(Admin user){
 	if (this->checkLoginAvailable(user.getLogin())){
-		listUsers.push_back(user);
+		listAdmin.push_back(user);
+		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		std::ofstream file(path.c_str(), ios::out | ios::app);
+		if (file){ // if file exists
+
+			cout << "insertion fichier users.txt ok" << endl;
+
+			string firstName, name, login, password, eMail;
+			name = user.getName();
+			firstName = user.getFirstName();
+			login = user.getLogin();
+			password = user.getPassword();
+			eMail = user.getEmail();
+			file << name << " " << firstName << " " << login << " " << password << " " << eMail << " " << endl;
+			file.close(); //close the file
+		}
+		else {
+			cout << "insertion fichier users.txt PAS ok" << endl;
+		}
+	}
+}
+
+void ModelEccleston::addUser(Teacher user){
+	if (this->checkLoginAvailable(user.getLogin())){
+		listTeacher.push_back(user);
+		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		std::ofstream file(path.c_str(), ios::out | ios::app);
+		if (file){ // if file exists
+
+			cout << "insertion fichier users.txt ok" << endl;
+
+			string firstName, name, login, password, eMail;
+			name = user.getName();
+			firstName = user.getFirstName();
+			login = user.getLogin();
+			password = user.getPassword();
+			eMail = user.getEmail();
+			file << name << " " << firstName << " " << login << " " << password << " " << eMail << " " << endl;
+			file.close(); //close the file
+		}
+		else {
+			cout << "insertion fichier users.txt PAS ok" << endl;
+		}
+	}
+}
+
+void ModelEccleston::addUser(Student user){
+	if (this->checkLoginAvailable(user.getLogin())){
+		listStudent.push_back(user);
 		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){ // if file exists
@@ -65,7 +113,7 @@ bool ModelEccleston::checkDate(tm date1, tm date2){
 /*Renvoie vrai si l'email n'est pas déjà pris */
 bool ModelEccleston::checkEMailAvailable(string email){
 	bool emailCheck = true;
-	for(User us : listUsers){ // foreach en c++
+	for (User us : this->getUsers()){ // foreach en c++
 		if (us.getEmail() == email){
 			emailCheck = false;
 		}
@@ -87,7 +135,7 @@ bool ModelEccleston::checkLesson(string lesson){
 /* return true if the login in parameter is in listUsers*/
 bool ModelEccleston::checkLogin(string login, string password){
 	bool loginCheck = false;
-	for (User us : listUsers){
+	for (User us : this->getUsers()){
 		if (us.getLogin() == login & us.getPassword() == password){
 			loginCheck = true;
 		}
@@ -98,7 +146,7 @@ bool ModelEccleston::checkLogin(string login, string password){
 /* return true if the login is available*/
 bool ModelEccleston::checkLoginAvailable(string login){
 	bool loginCheck = true;
-	for (User us : listUsers){
+	for (User us : this->getUsers()){
 		if (us.getLogin() == login){
 			loginCheck = false;
 		}
@@ -113,13 +161,7 @@ bool ModelEccleston::checkNameAvailable(string s1, string s2){
 
 
 User ModelEccleston::getAdmin(){
-	User admin;
-	for (User us: listUsers){
-		if (us.getUserType() == 1){
-			admin = us;
-		}
-	}
-	return admin;
+	return listAdmin.at(0);
 }
 
 User ModelEccleston::getCurrentUser(){
@@ -131,17 +173,60 @@ vector<Lesson> ModelEccleston::getOpenLesson(){
 }
 
 vector<User> ModelEccleston::getUsers(){
-	return this->listUsers;
+	vector<User> listUsers;
+	for (Admin us : listAdmin){
+		listUsers.push_back(us);
+	}
+	for (Teacher us : listTeacher){
+		listUsers.push_back(us);
+	}
+	for (Student us : listStudent){
+		listUsers.push_back(us);
+	}
+	return listUsers;
 }
 
 User ModelEccleston::getUser(int i){
-	return listUsers.at(i);
+	return this->getUsers().at(i);
 }
 
 User ModelEccleston::getUserByLogin(string login){
 	int i = 0;
 	User usr;
-	for (User us: listUsers){
+	for (User us : this->getUsers()){
+		if (us.getLogin() == login){
+			usr = us;
+		}
+	}
+	return usr;
+}
+
+Admin ModelEccleston::getAdminByLogin(string login){
+	int i = 0;
+	Admin usr;
+	for (Admin us : listAdmin){
+		if (us.getLogin() == login){
+			usr = us;
+		}
+	}
+	return usr;
+}
+
+Teacher ModelEccleston::getTeacherByLogin(string login){
+	int i = 0;
+	Teacher usr;
+	for (Teacher us : listTeacher){
+		if (us.getLogin() == login){
+			usr = us;
+		}
+	}
+	return usr;
+}
+
+Student ModelEccleston::getStudentByLogin(string login){
+	int i = 0;
+	Student usr;
+	for (Student us : listStudent){
 		if (us.getLogin() == login){
 			usr = us;
 		}
@@ -175,25 +260,45 @@ void ModelEccleston::removeLesson(Lesson lesson){
 }
 
 
-void ModelEccleston::removeUser(User user){
+void ModelEccleston::removeUser(Admin user){
 	int i = 0;
-	if (listUsers.at(0).getLogin() == user.getLogin()){
-		listUsers.erase(listUsers.begin() + 0);
+	if (listAdmin.at(0).getLogin() == user.getLogin()){
+		listAdmin.erase(listAdmin.begin() + 0);
 	}
 	else {
-		for (unsigned int i = 1; i < listUsers.size(); i++){
-			if (listUsers.at(i).getLogin() == user.getLogin()){
-				listUsers.erase(listUsers.begin() + i);
+		for (unsigned int i = 1; i < listAdmin.size(); i++){
+			if (listAdmin.at(i).getLogin() == user.getLogin()){
+				listAdmin.erase(listAdmin.begin() + i);
 			}
 		}
 	}
-	
 }
 
-void ModelEccleston::setCurrentUser(User user) {
-	this->currentUser = user;
+void ModelEccleston::removeUser(Teacher user){
+	int i = 0;
+	if (listTeacher.at(0).getLogin() == user.getLogin()){
+		listTeacher.erase(listTeacher.begin() + 0);
+	}
+	else {
+		for (unsigned int i = 1; i < listTeacher.size(); i++){
+			if (listTeacher.at(i).getLogin() == user.getLogin()){
+				listTeacher.erase(listTeacher.begin() + i);
+			}
+		}
+	}
 }
 
-void ModelEccleston::setUser(int id, User user){
-	this->listUsers.at(id) = user;
+void ModelEccleston::removeUser(Student user){
+	int i = 0;
+	if (listStudent.at(0).getLogin() == user.getLogin()){
+		listStudent.erase(listStudent.begin() + 0);
+	}
+	else {
+		for (unsigned int i = 1; i < listStudent.size(); i++){
+			if (listStudent.at(i).getLogin() == user.getLogin()){
+				listStudent.erase(listStudent.begin() + i);
+			}
+		}
+	}
 }
+

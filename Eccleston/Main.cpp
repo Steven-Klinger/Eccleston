@@ -30,11 +30,23 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									  break;
 						  }
 						  case 1: {
+									  Teacher teacher = model->getCurrentTeacher();
 									  fullName.append(" : Professeur");
+									  for (Lesson les : teacher.getLessons()) {
+										  string name = les.getName();
+										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
+										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
+									  }
 									  break;
 						  }
 						  case 2: {
+									  Student student = model->getCurrentStudent();
 									  fullName.append(" : Étudiant");
+									  for (Lesson les : student.getLessons()) {
+										  string name = les.getName();
+										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
+										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
+									  }
 									  break;
 						  }
 						  default:{
@@ -69,25 +81,29 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 							}
 							if (model->checkLogin(login, passW)) {
 								User user = model->getUserByLogin(login);
-								model->setCurrentUser(user);
+								int userType = user.getUserType();
 								PostMessage(hwnd, WM_CLOSE, 0, 0);
-								int val = user.getUserType();
 								string msg = "Bienvenue " + user.getFirstName();
 								MessageBox(hwnd, msg.c_str(), "Connection", MB_OK);
-								switch (val)
+								switch (userType)
 								{
 								case 0:{
+										   Admin admin = model->getAdminByLogin(login);
+										   model->setCurrentUser(admin);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
 								}
 								case 1:{
+										   Teacher teacher = model->getTeacherByLogin(login);
+										   model->setCurrentUser(teacher);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_TEACHER), NULL, DlgProc);
 								}
 								case 2:{
+										   Student student = model->getStudentByLogin(login);
+										   model->setCurrentUser(student);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_STUDENT), NULL, DlgProc);
 								}
 								default:{
-											MessageBox(hwnd, "Problème d'héritage et de méthode virtuelle ", "Connection", MB_OK);
-											return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
+											MessageBox(hwnd, "Problème de connexion : vôtre compte est corrompue", "Connection", MB_OK);
 								}
 								}
 							}
@@ -118,14 +134,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 {
 	hInst = hInstance;
 	model = new ModelEccleston();
-	model->addUser(Admin("Raphael", "Merkling", "aze", "Desmero", "plop@mail.fr", model));
-	model->addUser(Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model));
-	model->addUser(Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model));
-	model->addUser(Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model));
-	model->addLesson(Lesson("CPOA", 50));
-	model->addLesson(Lesson("Algo", 50));
+	
+	Admin Raphael = Admin("Raphael", "Merkling", "aze", "Desmero", "plop@mail.fr", model);
+	Teacher Erwan = Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model);
+	Student Steven = Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model);
+	Student Nicolas = Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model);
+
+	Lesson CPOA = Lesson("CPOA", 50);
 	Lesson toucan = Lesson("Toucan", 50);
 	toucan.setValidate(1);
+
+	Nicolas.addLesson(toucan);
+	Steven.addLesson(CPOA);
+
+	model->addUser(Raphael);
+	model->addUser(Erwan);
+	model->addUser(Steven);
+	model->addUser(Nicolas);
+
+	model->addLesson(CPOA);
+	model->addLesson(Lesson("Algo", 50));
 	model->addLesson(toucan);
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);

@@ -15,6 +15,7 @@ using namespace std;
 class Admin : public User
 {
 public:
+	Admin();
 	Admin(string firstName, string name, string password, string login, string eMail, ModelEccleston* model);
 	~Admin();
 	void addNotification(Lesson);
