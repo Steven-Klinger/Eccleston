@@ -45,7 +45,7 @@ public:
 	Teacher* getTeacherByLogin(string login);
 	Student* getStudentByLogin(string login);
 	std::vector<Lesson*> getWaitingLessons();
-	vector<User*> getUsers(); // non presente dans le contrat 
+	vector<User*> getUsers();
 	void removeLesson(Lesson* lesson);
 	void removeUser(Admin* user);
 	void removeUser(Teacher* user);

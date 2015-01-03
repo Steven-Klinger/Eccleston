@@ -90,24 +90,27 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 								MessageBox(hwnd, msg.c_str(), "Connection", MB_OK);
 								switch (userType)
 								{
-								case 0:{
-										   Admin* admin = model->getAdminByLogin(login);
-										   model->setCurrentUser(admin);
-										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
-								}
-								case 1:{
-										   Teacher* teacher = model->getTeacherByLogin(login);
-										   model->setCurrentUser(teacher);
-										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_TEACHER), NULL, DlgProc);
-								}
-								case 2:{
-										   Student* student = model->getStudentByLogin(login);
-										   model->setCurrentUser(student);
-										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_STUDENT), NULL, DlgProc);
-								}
-								default:{
-											MessageBox(hwnd, "Problème de connexion : vôtre compte est corrompue", "Connection", MB_OK);
-								}
+									case 0:{
+											   Admin* admin = model->getAdminByLogin(login);
+											   model->setCurrentUser(admin);
+											   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
+											   break;
+									}
+									case 1:{
+											   Teacher* teacher = model->getTeacherByLogin(login);
+											   model->setCurrentUser(teacher);
+											   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_TEACHER), NULL, DlgProc);
+											   break;
+									}
+									case 2:{
+											   Student* student = model->getStudentByLogin(login);
+											   model->setCurrentUser(student);
+											   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_STUDENT), NULL, DlgProc);
+											   break;
+									}
+									default:{
+												MessageBox(hwnd, "Problème de connexion : vôtre compte est corrompue", "Connection", MB_OK);
+									}
 								}
 							}
 							else {
