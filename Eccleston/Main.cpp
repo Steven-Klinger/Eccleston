@@ -30,9 +30,9 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									  break;
 						  }
 						  case 1: {
-									  Teacher teacher = model->getCurrentTeacher();
+									  Teacher* teacher = model->getCurrentTeacher();
 									  fullName.append(" : Professeur");
-									  for (Lesson* les : teacher.getLessons()) {
+									  for (Lesson* les : teacher->getLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
@@ -40,9 +40,9 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									  break;
 						  }
 						  case 2: {
-									  Student student = model->getCurrentStudent();
+									  Student* student = model->getCurrentStudent();
 									  fullName.append(" : Étudiant");
-									  for (Lesson* les : student.getLessons()) {
+									  for (Lesson* les : student->getLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
@@ -80,25 +80,25 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 								GlobalFree((HANDLE)buf);
 							}
 							if (model->checkLogin(login, passW)) {
-								User user = model->getUserByLogin(login);
-								int userType = user.getUserType();
+								User* user = model->getUserByLogin(login);
+								int userType = user->getUserType();
 								PostMessage(hwnd, WM_CLOSE, 0, 0);
-								string msg = "Bienvenue " + user.getFirstName();
+								string msg = "Bienvenue " + user->getFirstName();
 								MessageBox(hwnd, msg.c_str(), "Connection", MB_OK);
 								switch (userType)
 								{
 								case 0:{
-										   Admin admin = model->getAdminByLogin(login);
+										   Admin* admin = model->getAdminByLogin(login);
 										   model->setCurrentUser(admin);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_ADMIN), NULL, DlgProc);
 								}
 								case 1:{
-										   Teacher teacher = model->getTeacherByLogin(login);
+										   Teacher* teacher = model->getTeacherByLogin(login);
 										   model->setCurrentUser(teacher);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_TEACHER), NULL, DlgProc);
 								}
 								case 2:{
-										   Student student = model->getStudentByLogin(login);
+										   Student* student = model->getStudentByLogin(login);
 										   model->setCurrentUser(student);
 										   return DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN_STUDENT), NULL, DlgProc);
 								}
@@ -148,10 +148,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	Nicolas->addLesson(toucan);
 	Steven->addLesson(CPOA);
 
-	model->addUser(*Raphael);
-	model->addUser(*Erwan);
-	model->addUser(*Steven);
-	model->addUser(*Nicolas);
+	model->addUser(Raphael);
+	model->addUser(Erwan);
+	model->addUser(Steven);
+	model->addUser(Nicolas);
 
 	model->addLesson(CPOA);
 	model->addLesson(Algo);
