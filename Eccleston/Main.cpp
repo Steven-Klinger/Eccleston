@@ -42,8 +42,8 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  case 2: {
 									  Student student = model->getCurrentStudent();
 									  fullName.append(" : Étudiant");
-									  for (Lesson les : student.getLessons()) {
-										  string name = les.getName();
+									  for (Lesson* les : student.getLessons()) {
+										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 									  }
@@ -142,10 +142,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	Lesson* CPOA = new Lesson("CPOA", Erwan, 50);
 	Lesson* toucan = new Lesson("Toucan", Erwan, 50);
+	Lesson* Algo = new Lesson("Algo", Erwan, 50);
 	toucan->setValidate(1);
 
-	Nicolas->addLesson(*toucan);
-	Steven->addLesson(*CPOA);
+	Nicolas->addLesson(toucan);
+	Steven->addLesson(CPOA);
 
 	model->addUser(*Raphael);
 	model->addUser(*Erwan);
@@ -153,7 +154,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	model->addUser(*Nicolas);
 
 	model->addLesson(*CPOA);
-	model->addLesson(Lesson("Algo", Erwan, 50));
+	model->addLesson(*Algo);
 	model->addLesson(*toucan);
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);

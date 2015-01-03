@@ -26,20 +26,20 @@ Student::~Student()
 {
 }
 
-void Student::addLesson(Lesson lesson){
+void Student::addLesson(Lesson* lesson){
 	listLessons.push_back(lesson);
 }
 
-void Student::addNotification(Lesson lesson){
+void Student::addNotification(Lesson* lesson){
 	string subject = "Add in main list";
-	string message = "You are in the main list for " + lesson.getName();
+	string message = "You are in the main list for " + lesson->getName();
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);
 }
 
-void Student::addNotification(ResourceFile res, Lesson les){
+void Student::addNotification(ResourceFile res, Lesson* les){
 	string subject = "Add ResourceFile";
-	string message = "Add of Ressource " + res.getName() + " in " + les.getName();
+	string message = "Add of Ressource " + res.getName() + " in " + les->getName();
 	Notification notif = Notification(subject, message, tm());
 	this->listNotification.push_back(notif);
 }
@@ -51,7 +51,7 @@ void Student::addNotification(Work* work){
 	this->listNotification.push_back(notif);
 }
 
-vector<Lesson> Student::getLessons(){
+vector<Lesson*> Student::getLessons(){
 	return listLessons;
 }
 
