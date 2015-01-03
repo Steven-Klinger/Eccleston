@@ -27,6 +27,7 @@ Lesson::Lesson(string name, Teacher* teacher, tm dateBegin, tm dateEnd, int maxS
 	this->validate = 0;
 	this->maxStudents = maxStudents;
 	this->teacher = teacher;
+	teacher->addLesson(this);
 }
 
 Lesson::Lesson(string name, Teacher* teacher, int maxStudents){
@@ -36,6 +37,7 @@ Lesson::Lesson(string name, Teacher* teacher, int maxStudents){
 	this->validate = 0;
 	this->maxStudents = maxStudents;
 	this->teacher = teacher;
+	teacher->addLesson(this);
 }
 
 void Lesson::addResourceFile(ResourceFile* res) {

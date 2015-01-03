@@ -135,26 +135,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	hInst = hInstance;
 	model = new ModelEccleston();
 	
-	Admin Raphael = Admin("Raphael", "Merkling", "aze", "Desmero", "plop@mail.fr", model);
-	Teacher Erwan = Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model);
-	Student Steven = Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model);
-	Student Nicolas = Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model);
+	Admin* Raphael = new Admin("Raphael", "Merkling", "aze", "Desmero", "plop@mail.fr", model);
+	Teacher* Erwan = new Teacher("Erwan", "Mellinger", "aze", "Erwan", "mel@mail.com", model);
+	Student* Steven = new Student("Steven", "Klinger", "aze", "PhantomD", "kli@mail.de", model);
+	Student* Nicolas = new Student("Nicolas", "Anduze", "aze", "Mandra", "and@mail.net", model);
 
-	Lesson CPOA = Lesson("CPOA", &Erwan, 50);
-	Lesson toucan = Lesson("Toucan", &Erwan, 50);
-	toucan.setValidate(1);
+	Lesson* CPOA = new Lesson("CPOA", Erwan, 50);
+	Lesson* toucan = new Lesson("Toucan", Erwan, 50);
+	toucan->setValidate(1);
 
-	Nicolas.addLesson(toucan);
-	Steven.addLesson(CPOA);
+	Nicolas->addLesson(*toucan);
+	Steven->addLesson(*CPOA);
 
-	model->addUser(Raphael);
-	model->addUser(Erwan);
-	model->addUser(Steven);
-	model->addUser(Nicolas);
+	model->addUser(*Raphael);
+	model->addUser(*Erwan);
+	model->addUser(*Steven);
+	model->addUser(*Nicolas);
 
-	model->addLesson(CPOA);
-	model->addLesson(Lesson("Algo", &Erwan, 50));
-	model->addLesson(toucan);
+	model->addLesson(*CPOA);
+	model->addLesson(Lesson("Algo", Erwan, 50));
+	model->addLesson(*toucan);
 
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 }
