@@ -1,7 +1,3 @@
-//{{NO_DEPENDENCIES}}
-// Fichier Include généré de Microsoft Visual C++.
-// Utilisé par projResource.rc
-//
 #define IDD_CONNEXION                   101
 #define IDD_MAIN_ADMIN                  111
 #define IDD_STUDENT						112
@@ -38,7 +34,7 @@
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
-// 
+ 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        102
