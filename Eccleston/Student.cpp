@@ -1,10 +1,11 @@
+
 #include "Student.h"
 
-Student::Student(string firstName, string Name, string password, string login, string email, ModelEccleston* model) : User(firstName,Name,
-				password,login,email, model, 2)
+Student::Student(string name, string firstName, string login, string password, string email, ModelEccleston* model) : User(name, firstName,
+	login, password, email, model, 2)
 {
 	this->firstName = firstName;
-	this->name = Name;
+	this->name = name;
 	this->password = password;
 	this->login = login;
 	this->email = email;
