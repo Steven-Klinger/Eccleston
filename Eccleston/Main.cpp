@@ -18,7 +18,6 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 	{
 						  // This is where we set up the dialog box, and initialise any default values
 						  int type = model->getCurrentUserType();
-						  //int type = model->getCurrentUser().getUserType();
 						  string fullName;
 						  switch (type)
 						  {
@@ -44,7 +43,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 						  }
 						  case 2: {
 									  Student* student = model->getCurrentStudent();
-									  fullName.append(student->getFirstName() + " " + student->getName() + " : Étudiant");
+									  fullName.append(student->getFirstName() + " " + student->getName() + " : Ã‰tudiant");
 									  for (Lesson* les : student->getLessons()) {
 										  string name = les->getName();
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
@@ -109,7 +108,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 											   break;
 									}
 									default:{
-												MessageBox(hwnd, "Problème de connexion : vôtre compte est corrompue", "Connection", MB_OK);
+												MessageBox(hwnd, "ProblÃ¨me de connexion : vÃ´tre compte est corrompue", "Connection", MB_OK);
 									}
 								}
 							}
