@@ -137,6 +137,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									   break;
 						   }
 						   }
+						   break;
 		}
 		case IDC_MAIN:
 		{
@@ -157,7 +158,13 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									 break;
 						 }
 						 }
+						 break;
 
+		}
+		case IDC_ADDUSER:
+		{
+							return DialogBox(hInst, MAKEINTRESOURCE(IDD_ADDUSER), NULL, DlgProc);
+							break;
 		}
 		case IDC_DECONNECT:
 			PostMessage(hwnd, WM_CLOSE, 0, 0);
