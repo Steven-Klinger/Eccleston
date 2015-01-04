@@ -32,7 +32,7 @@ public:
 	bool checkLesson(string lesson);
 	bool checkLogin(string login, string password);
 	bool checkLoginAvailable(string login);
-	bool checkNameAvailable(string s1, string s2);
+	bool checkNameAvailable(string s1);
 	Admin* getAdmin();
 	int getCurrentUserType() { return this->currentUserType; }
 	Admin* getCurrentAdmin() { return currentAdmin; }
