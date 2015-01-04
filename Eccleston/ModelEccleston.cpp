@@ -7,8 +7,8 @@
 ModelEccleston::ModelEccleston()
 {
 	// fill the list of users with data in users.txt file
-/*	string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
-	std::ifstream file(path.c_str(), ios::in);
+	string pathStu = "students.txt";
+	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){ // if file exists
 		string line;
 		while (getline(file, line)){
@@ -16,12 +16,45 @@ ModelEccleston::ModelEccleston()
 			string firstName, name, login, password, eMail;
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
-				this->listUsers.push_back(User(name, firstName, login, password, eMail, this, -1));
+				Student* pUser = new Student(name, firstName, login, password, eMail, this);
+				this->listStudent.push_back(pUser);
 			}
 		}
 		file.close(); //close the file
 	}
-*/	
+	
+	string pathAd = "admins.txt";
+	std::ifstream file2(pathAd.c_str(), ios::in);
+	if (file2){ // if file exists
+		string line;
+		while (getline(file2, line)){
+			istringstream iss(line); // creat a separator for line
+			string firstName, name, login, password, eMail;
+			iss >> name >> firstName >> login >> password >> eMail;
+			if (this->checkLoginAvailable(login)){
+				Admin* pUser = new Admin(name, firstName, login, password, eMail, this);
+				this->listAdmin.push_back(pUser);
+			}
+		}
+		file2.close(); //close the file
+	}
+
+	string pathTeacher = "/teachers.txt";
+	std::ifstream file3(pathTeacher.c_str(), ios::in);
+	if (file3){ // if file exists
+		string line;
+		while (getline(file3, line)){
+			istringstream iss(line); // creat a separator for line
+			string firstName, name, login, password, eMail;
+			iss >> name >> firstName >> login >> password >> eMail;
+			if (this->checkLoginAvailable(login)){
+				Teacher* pUser = new Teacher(name, firstName, login, password, eMail, this);
+				this->listTeacher.push_back(pUser);
+			}
+		}
+		file3.close(); //close the file
+	}
+
 	this->currentUserType = -1;
 }
 
@@ -37,11 +70,11 @@ void ModelEccleston::addLesson(Lesson* lesson){
 void ModelEccleston::addUser(Admin* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listAdmin.push_back(user);
-		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		string path = "admins.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){ // if file exists
 
-			cout << "insertion fichier users.txt ok" << endl;
+			cout << "insertion fichier admins.txt ok" << endl;
 
 			string firstName, name, login, password, eMail;
 			name = user->getName();
@@ -53,7 +86,7 @@ void ModelEccleston::addUser(Admin* user){
 			file.close(); //close the file
 		}
 		else {
-			cout << "insertion fichier users.txt PAS ok" << endl;
+			cout << "insertion fichier admins.txt PAS ok" << endl;
 		}
 	}
 }
@@ -61,11 +94,11 @@ void ModelEccleston::addUser(Admin* user){
 void ModelEccleston::addUser(Teacher* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listTeacher.push_back(user);
-		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		string path = "teachers.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){ // if file exists
 
-			cout << "insertion fichier users.txt ok" << endl;
+			cout << "insertion fichier teachers.txt ok" << endl;
 
 			string firstName, name, login, password, eMail;
 			name = user->getName();
@@ -77,7 +110,7 @@ void ModelEccleston::addUser(Teacher* user){
 			file.close(); //close the file
 		}
 		else {
-			cout << "insertion fichier users.txt PAS ok" << endl;
+			cout << "insertion fichier teachers.txt PAS ok" << endl;
 		}
 	}
 }
@@ -85,11 +118,11 @@ void ModelEccleston::addUser(Teacher* user){
 void ModelEccleston::addUser(Student* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listStudent.push_back(user);
-		string path = "C://Users/erwan/Documents/Eccleston/projetEccleston/Debug/users.txt";
+		string path = "students.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){ // if file exists
 
-			cout << "insertion fichier users.txt ok" << endl;
+			cout << "insertion fichier teachers.txt ok" << endl;
 
 			string firstName, name, login, password, eMail;
 			name = user->getName();
@@ -101,7 +134,7 @@ void ModelEccleston::addUser(Student* user){
 			file.close(); //close the file
 		}
 		else {
-			cout << "insertion fichier users.txt PAS ok" << endl;
+			cout << "insertion fichier teachers.txt PAS ok" << endl;
 		}
 	}
 }
@@ -111,7 +144,7 @@ bool ModelEccleston::checkDate(tm date1, tm date2){
 		(date2.tm_year + date2.tm_mon + date2.tm_mday + date2.tm_hour + date2.tm_min + date2.tm_sec);
 }
 
-/*Renvoie vrai si l'email n'est pas dÈj‡ pris */
+/*Renvoie vrai si l'email n'est pas d√©j√† pris */
 bool ModelEccleston::checkEMailAvailable(string email){
 	bool emailCheck = true;
 	for (User* us : this->getUsers()){ // foreach en c++
@@ -155,7 +188,7 @@ bool ModelEccleston::checkLoginAvailable(string login){
 	return loginCheck;
 }
 
-//TODO elle fait quoi cette fonction dÈj‡ ?
+//TODO elle fait quoi cette fonction d√©j√† ?
 bool ModelEccleston::checkNameAvailable(string s1, string s2){
 	return true;
 }
