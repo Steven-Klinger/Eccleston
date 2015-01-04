@@ -159,11 +159,7 @@ bool ModelEccleston::checkDate(tm date1, tm date2){
 
 	}
 	return true;
-}bool ModelEccleston::checkDate(tm date1, tm date2){
-	return (date1.tm_year + date1.tm_mon + date1.tm_mday + date1.tm_hour + date1.tm_min + date1.tm_sec) <
-		(date2.tm_year + date2.tm_mon + date2.tm_mday + date2.tm_hour + date2.tm_min + date2.tm_sec);
 }
-
 
 bool ModelEccleston::checkEMailAvailable(string email){
 	bool emailCheck = true;
@@ -212,7 +208,22 @@ Admin* ModelEccleston::getAdmin(){
 }
 
 vector<Lesson*> ModelEccleston::getOpenLesson(){
-	return this->listLessons; // A MODIFIER !!!
+	/*struct tm Today;
+	time_t maintenant;
+	time(&maintenant);
+	Today = *localtime(&maintenant);
+
+	printf("%4.4d/%2.2d/%2.2d\n", Today.tm_year + 1900, Today.tm_mon + 1, Today.tm_mday);
+	
+	std::vector<Lesson*> listOpenLesson;
+	for (Lesson* ls : listLessons){
+		if (this->checkDate(Today, ls->getDateBegin)){
+			listOpenLesson.push_back(ls);
+		}
+	}
+
+	return listOpenLesson;*/
+	return this->listLessons; //A modifier
 }
 
 vector<User*> ModelEccleston::getUsers(){
