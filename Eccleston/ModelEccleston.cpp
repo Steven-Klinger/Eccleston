@@ -140,6 +140,26 @@ void ModelEccleston::addUser(Student* user){
 }
 
 bool ModelEccleston::checkDate(tm date1, tm date2){
+
+	if (date1.tm_year > date2.tm_year){
+		return false;
+	}
+
+	else if (date1.tm_year == date2.tm_year){
+
+		if (date1.tm_mon > date2.tm_mon){
+			return false;
+		}
+	}
+
+	else{
+		if (date1.tm_mday > date2.tm_mday){
+			return false;
+		}
+
+	}
+	return true;
+}bool ModelEccleston::checkDate(tm date1, tm date2){
 	return (date1.tm_year + date1.tm_mon + date1.tm_mday + date1.tm_hour + date1.tm_min + date1.tm_sec) <
 		(date2.tm_year + date2.tm_mon + date2.tm_mday + date2.tm_hour + date2.tm_min + date2.tm_sec);
 }
