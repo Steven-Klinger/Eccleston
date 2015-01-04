@@ -32,6 +32,7 @@ public:
 	bool checkLesson(string lesson);
 	bool checkLogin(string login, string password);
 	bool checkLoginAvailable(string login);
+	//bool checkNameAvailable(string s1, string s2);
 	Admin* getAdmin();
 	int getCurrentUserType() { return this->currentUserType; }
 	Admin* getCurrentAdmin() { return currentAdmin; }
@@ -39,12 +40,18 @@ public:
 	Student* getCurrentStudent() { return currentStudent; }
 	std::vector<Lesson*> getOpenLesson();
 	User* getUser(int i);
+	Admin* getAdmin(int index) { return listAdmin.at(index); }
+	Teacher* getTeacher(int index) { return listTeacher.at(index); }
+	Student* getStudent(int index) { return listStudent.at(index); }
 	User* getUserByLogin(string login);
 	Admin* getAdminByLogin(string login);
 	Teacher* getTeacherByLogin(string login);
 	Student* getStudentByLogin(string login);
 	std::vector<Lesson*> getWaitingLessons();
 	vector<User*> getUsers();
+	vector<Admin*> getAdmins() { return listAdmin; }
+	vector<Teacher*> getTeachers() { return listTeacher; }
+	vector<Student*> getStudents() { return listStudent; }
 	void removeLesson(Lesson* lesson);
 	void removeUser(Admin* user);
 	void removeUser(Teacher* user);
