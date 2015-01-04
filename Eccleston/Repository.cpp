@@ -33,7 +33,7 @@ string Repository::getPath(){
 }
 
 int Repository::getTypeResourceFile(){
-	return 0; // c'est cb pour les ressources ?
+	return 5; // c'est cb pour les ressources ?
 }
 
 vector<Work> Repository::getWorks(){
