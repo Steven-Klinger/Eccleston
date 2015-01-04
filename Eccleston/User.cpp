@@ -59,6 +59,9 @@ int User::checkEmail(){
 		if (fi != std::string::npos){
 			return 1;
 		}
+		else {
+			return 0;
+		}
 	}
 	else{
 		return 0;
