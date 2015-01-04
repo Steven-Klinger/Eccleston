@@ -1,9 +1,5 @@
 #include "Student.h"
 
-
-//A faire après création du modèle 
-
-
 Student::Student(string firstName, string Name, string password, string login, string email, ModelEccleston* model) : User(firstName,Name,
 				password,login,email, model, 2)
 {
