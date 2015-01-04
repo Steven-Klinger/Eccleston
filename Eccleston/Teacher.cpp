@@ -8,8 +8,8 @@ Teacher::Teacher() : User() {
 	this->email = "";
 }
 
-Teacher::Teacher(string firstName, string name, string password, string login, string email, ModelEccleston* model) : User(firstName, name,
-	password, login, email, model, 1)
+Teacher::Teacher(string name, string firstName, string login, string password, string email, ModelEccleston* model) : User(name, firstName,
+	login, password, email, model, 1)
 {
 	this->firstName = firstName;
 	this->name = name;
