@@ -343,5 +343,29 @@ void ModelEccleston::removeUser(Student* user){
 			}
 		}
 	}
+	string pathStu = "C:/Users/Public/students.txt";
+	string buffer;
+	std::ifstream file(pathStu.c_str(), ios::in);
+	if (file){ // if file exists
+		string line;
+		while (getline(file, line)){
+			istringstream iss(line); // creat a separator for line
+			string firstName, name, login, password, eMail;
+			iss >> name >> firstName >> login >> password >> eMail;
+			if (!(user->getLogin() == login)){
+				buffer += name + " " + firstName + " " + login + " " + password + " " + eMail + '\n';
+			}
+		}
+		file.close(); //close the file
+	}
+
+	std::ofstream file2(pathStu.c_str(), ios::out | ios::app);
+	if (file2){ // if file exists
+		file2 << buffer;
+		file.close(); //close the file
+	}
+	else {
+		cout << "insertion fichier teachers.txt PAS ok" << endl;
+	}
 }
 
