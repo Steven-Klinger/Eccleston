@@ -1,8 +1,8 @@
 #include "Admin.h"
 
 
-Admin::Admin(string firstName, string name, string password, string login, string eMail, ModelEccleston* model) : User(firstName, name,
-	password, login, eMail, model, 0)
+Admin::Admin(string name, string firstName, string login, string password, string eMail, ModelEccleston* model) : User(name, firstName,
+	login, password, eMail, model, 0)
 {
 	this->firstName = firstName;
 	this->name = name;
