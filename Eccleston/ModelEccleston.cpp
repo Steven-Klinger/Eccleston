@@ -207,11 +207,6 @@ bool ModelEccleston::checkLoginAvailable(string login){
 	return loginCheck;
 }
 
-bool ModelEccleston::checkNameAvailable(string s1, string s2){
-	return true;
-}
-
-
 Admin* ModelEccleston::getAdmin(){
 	return listAdmin.at(0);
 }
