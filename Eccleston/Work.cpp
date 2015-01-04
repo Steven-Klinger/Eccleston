@@ -7,7 +7,7 @@
 
 Work::Work(string name, int visible, string path) : File(name, visible, path){
 
-	this->mark = -1; //valeur par défaut
+	this->mark = -1;
 }
 
 int Work::getMark(){
