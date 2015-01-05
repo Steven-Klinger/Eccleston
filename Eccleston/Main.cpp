@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <string>
+#include <sstream>
 
 #include "resource.h" 
 #include "ModelEccleston.h"
@@ -87,7 +88,12 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 									  Teacher* teacher = model->getCurrentTeacher();
 									  fullName.append(teacher->getFirstName() + " " + teacher->getName() + " : Professeur");
 									  for (Lesson* les : teacher->getLessons()) {
-										  string name = les->getName();
+										  stringstream streamName;
+										  streamName << les->getName() << "; " << les->getMaxStudents() << "; " << les->getNumbreStudent();
+										  string name = streamName.str();
+										  if (!les->isValidated()){
+											  name.append("; En attenter de validation");
+										  }
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 									  }
