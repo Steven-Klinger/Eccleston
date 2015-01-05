@@ -60,10 +60,40 @@ void Lesson::addStudent(Student* stud) {
 
 void Lesson::addStudentMainList(Student* stud) {
 	this->mainListStudent.push_back(stud);
+	string path = "C:/Users/Public/Eccleston/" + this->getName()+"/primaryStudentLists.txt";
+	std::ofstream file(path.c_str(), ios::out | ios::app);
+	if (file){
+		string firstName, name, login, password, eMail;
+		name = stud->getName();
+		firstName = stud->getFirstName();
+		login = stud->getLogin();
+		password = stud->getPassword();
+		eMail = stud->getEmail();
+		file << name << " " << firstName << " " << login << " " << password << " " << eMail << " " << endl;
+		file.close();
+	}
+	else {
+
+	}
 }
 
 void Lesson::addStudentSecondaryList(Student* stud) {
 	this->secondaryListStudent.push_back(stud);
+	string path = "C:/Users/Public/Eccleston/" + this->getName() + "/secondStudentLists.txt";
+	std::ofstream file(path.c_str(), ios::out | ios::app);
+	if (file){
+		string firstName, name, login, password, eMail;
+		name = stud->getName();
+		firstName = stud->getFirstName();
+		login = stud->getLogin();
+		password = stud->getPassword();
+		eMail = stud->getEmail();
+		file << name << " " << firstName << " " << login << " " << password << " " << eMail << " " << endl;
+		file.close();
+	}
+	else {
+
+	}
 }
 
 int Lesson::getNumbreStudent() {
