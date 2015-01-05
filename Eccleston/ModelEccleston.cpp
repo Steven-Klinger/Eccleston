@@ -3,10 +3,15 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <stdio.h> 
 ModelEccleston::ModelEccleston()
 {
 	// fill the list of users with data in users.txt file
-	string pathStu = "C:/Users/Public/students.txt";
+	
+	string pathStu = "C:/Users/Public/students~.txt";
+	string pathStuOld = "C:/Users/Public/students.txt";
+	rename(pathStuOld.c_str(), pathStu.c_str());
+	remove(pathStuOld.c_str());
 	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){
 		string line;
@@ -21,7 +26,11 @@ ModelEccleston::ModelEccleston()
 		}
 		file.close();
 	}
-	string pathAd = "C:/Users/Public/admins.txt";
+	remove(pathStu.c_str());
+	string pathAd = "C:/Users/Public/admins~.txt";
+	string pathAdOld = "C:/Users/Public/admins.txt";
+	rename(pathAdOld.c_str(), pathAd.c_str());
+	remove(pathAdOld.c_str());
 	std::ifstream file2(pathAd.c_str(), ios::in);
 	if (file2){ //
 		string line;
@@ -36,7 +45,11 @@ ModelEccleston::ModelEccleston()
 		}
 		file2.close();
 	}
-	string pathTeacher = "C:/Users/Public/teachers.txt";
+	remove(pathAd.c_str());
+	string pathTeacher = "C:/Users/Public/teachers~.txt";
+	string pathTeacherOld = "C:/Users/Public/teachers.txt";
+	rename(pathTeacherOld.c_str(), pathTeacher.c_str());
+	remove(pathTeacherOld.c_str());
 	std::ifstream file3(pathTeacher.c_str(), ios::in);
 	if (file3){ // if file exists
 		string line;
@@ -51,8 +64,11 @@ ModelEccleston::ModelEccleston()
 		}
 		file3.close();
 	}
-
-	string pathLesson = "C:/Users/Public/lessons.txt";
+	remove(pathTeacher.c_str());
+	string pathLesson = "C:/Users/Public/lessons~.txt";
+	string pathLessonOld = "C:/Users/Public/lessons.txt";
+	rename(pathLessonOld.c_str(), pathLesson.c_str());
+	remove(pathLessonOld.c_str());
 	std::ifstream file4(pathLesson.c_str(), ios::in);
 	if (file4){
 		string line;
@@ -74,6 +90,7 @@ ModelEccleston::ModelEccleston()
 		}
 		file4.close();
 	}
+	remove(pathLesson.c_str());
 
 	this->currentUserType = -1;
 }
