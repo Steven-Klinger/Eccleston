@@ -16,7 +16,7 @@ ModelEccleston::ModelEccleston()
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
 				Student* pUser = new Student(name, firstName, login, password, eMail, this);
-				this->listStudent.push_back(pUser);
+				this->addUser(pUser);
 			}
 		}
 		file.close();
@@ -31,7 +31,7 @@ ModelEccleston::ModelEccleston()
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
 				Admin* pUser = new Admin(name, firstName, login, password, eMail, this);
-				this->listAdmin.push_back(pUser);
+				this->addUser(pUser);
 			}
 		}
 		file2.close();
@@ -46,7 +46,7 @@ ModelEccleston::ModelEccleston()
 			iss >> name >> firstName >> login >> password >> eMail;
 			if (this->checkLoginAvailable(login)){
 				Teacher* pUser = new Teacher(name, firstName, login, password, eMail, this);
-				this->listTeacher.push_back(pUser);
+				this->addUser(pUser);
 			}
 		}
 		file3.close();
@@ -56,14 +56,20 @@ ModelEccleston::ModelEccleston()
 	std::ifstream file4(pathLesson.c_str(), ios::in);
 	if (file4){
 		string line;
-		while (getline(file, line)){
+		while (getline(file4, line)){
 			istringstream iss(line); // creat a separator for line
-			string name, teacher;
-			int nbrMax;
-			iss >> name >> teacher >> nbrMax;
+			string name, teacherLog, strNbrMax, strValidated;
+			int nbrMax, validated;
+			iss >> name >> teacherLog >> nbrMax >> validated;
+			nbrMax = atoi(strNbrMax.c_str());
+			validated = atoi(strValidated.c_str());
 			if (this->checkLesson(name)){
-				Lesson* pLesson = new Lesson(name, getTeacherByLogin(teacher),tm(),tm(),nbrMax);
-				this->listLessons.push_back(pLesson);
+				Teacher* teacher = this->getTeacherByLogin(teacherLog);
+				if (teacher != NULL){
+					Lesson* pLesson = new Lesson(name, teacher, nbrMax);
+					pLesson->setValidate(validated);
+					this->addLesson(pLesson);
+				}
 			}
 		}
 		file4.close();
@@ -82,11 +88,13 @@ void ModelEccleston::addLesson(Lesson* lesson){
 		string path = "C:/Users/Public/lessons.txt";
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){
-			string  name, teacher, nbrMax;
+			string  name, teacher;
+			int nbrMax, validates;
 			name = lesson->getName();
 			teacher = lesson->getTeacher()->getName();
 			nbrMax = lesson->getMaxStudents();
-			file << name << " " << teacher << " " << nbrMax << " " << endl;
+			validates = lesson->isValidated();
+			file << name << " " << teacher << " " << nbrMax << " " << validates << " " << endl;
 			file.close();
 		}
 		else {
@@ -190,7 +198,7 @@ bool ModelEccleston::checkEMailAvailable(string email){
 
 bool ModelEccleston::checkLesson(string lesson){
 	bool lessonCheck = true;
-	for (Lesson* les : listLessons){
+	for (Lesson* les : this->listLessons){
 		if (les->getName() == lesson){
 			lessonCheck = false;
 		}
@@ -257,7 +265,7 @@ User* ModelEccleston::getUserByLogin(string login){
 Admin* ModelEccleston::getAdminByLogin(string login){
 	int i = 0;
 	Admin* usr = NULL;
-	for (Admin* us : listAdmin){
+	for (Admin* us : this->listAdmin){
 		if (us->getLogin() == login){
 			usr = us;
 		}
@@ -267,7 +275,7 @@ Admin* ModelEccleston::getAdminByLogin(string login){
 Teacher* ModelEccleston::getTeacherByLogin(string login){
 	int i = 0;
 	Teacher* usr = NULL;
-	for (Teacher* us : listTeacher){
+	for (Teacher* us : this->listTeacher){
 		if (us->getLogin() == login){
 			usr = us;
 		}
@@ -277,7 +285,7 @@ Teacher* ModelEccleston::getTeacherByLogin(string login){
 Student* ModelEccleston::getStudentByLogin(string login){
 	int i = 0;
 	Student* usr = NULL;
-	for (Student* us : listStudent){
+	for (Student* us : this->listStudent){
 		if (us->getLogin() == login){
 			usr = us;
 		}

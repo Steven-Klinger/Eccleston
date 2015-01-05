@@ -91,11 +91,13 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 									  }
-									  for (ResourceFile* res : teacher->getLesson(0)->getResourceFiles()) {
-										  string name = res->getName();
-										  int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
-										  SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
-									  }
+									  /*									  for (ResourceFile* res : teacher->getLesson(0)->getResourceFiles()) {
+																				string name = res->getName();
+																				int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
+																				SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
+																				}
+																				*/
+
 									  break;
 						  }
 						  case 2: {
@@ -111,7 +113,8 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 																				int index = SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_ADDSTRING, 0, (LPARAM)name.c_str());
 																				SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 																				}
-																				*/									  break;
+																				*/
+									  break;
 						  }
 						  default:{
 									  fullName.append(" : Erreur");
