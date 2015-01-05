@@ -175,9 +175,9 @@ FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LTEXT           "[User_Name]",IDC_STATIC_USERNAME,3,3,185,8
     LTEXT           "Nom du cours",IDC_STATIC,10,30,50,8
-    LTEXT           "Nombre d'étudiants maximum",IDC_STATIC,10,60,50,8
-    LTEXT           "Date de début du cours",IDC_STATIC,10,90,50,8
-    LTEXT           "Date de début du cours",IDC_STATIC,10,120,50,8
+    LTEXT           "Nbr d'étudiants max",IDC_STATIC,10,60,100,8
+    LTEXT           "Date de début du cours",IDC_STATIC,10,90,100,8
+    LTEXT           "Date de fin du cours",IDC_STATIC,10,120,100,8
     EDITTEXT        IDC_EDIT_ADDLESSON_NAME,88,30,100,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_ADDLESSON_MAXSTUD,88,60,100,14,ES_AUTOHSCROLL | ES_NUMBER
 	EDITTEXT        IDC_EDIT_ADDLESSON_DATESTART_DAY, 88, 90, 20, 14, ES_AUTOHSCROLL | ES_NUMBER

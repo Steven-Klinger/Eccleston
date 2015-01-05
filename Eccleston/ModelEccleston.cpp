@@ -108,7 +108,7 @@ void ModelEccleston::addLesson(Lesson* lesson){
 			string  name, teacher;
 			int nbrMax, validates;
 			name = lesson->getName();
-			teacher = lesson->getTeacher()->getName();
+			teacher = lesson->getTeacher()->getLogin();
 			nbrMax = lesson->getMaxStudents();
 			validates = lesson->isValidated();
 			file << name << " " << teacher << " " << nbrMax << " " << validates << " " << endl;
@@ -292,7 +292,8 @@ Admin* ModelEccleston::getAdminByLogin(string login){
 Teacher* ModelEccleston::getTeacherByLogin(string login){
 	int i = 0;
 	Teacher* usr = NULL;
-	for (Teacher* us : this->listTeacher){
+	std::vector<Teacher*> list = this->listTeacher;
+	for (Teacher* us : list){
 		if (us->getLogin() == login){
 			usr = us;
 		}
