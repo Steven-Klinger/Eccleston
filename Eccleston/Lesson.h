@@ -47,7 +47,7 @@ public:
 	void setMaxStudent(int maxStudent) { this->maxStudents = maxStudent; }
 	void setName(string name) { this->name = name; }
 	void setTeacher(Teacher* teacher) { this->teacher = teacher; }
-	void setValidate(int validate) { this->validate = validate; }
+	void setValidate(int validate);
 
 	~Lesson();
 

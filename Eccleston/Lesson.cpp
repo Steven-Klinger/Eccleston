@@ -3,6 +3,10 @@
 #include <string>
 #include <ctime>
 #include <vector>
+#include <istream>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
 
 #include "ResourceFile.h"
 #include "Teacher.h"
@@ -143,5 +147,46 @@ void Lesson::removeStudentSecondaryList(Student* oldStud) {
 		if (secondaryListStudent.at(i)->getName() == oldStud->getName() && secondaryListStudent.at(i)->getFirstName() == oldStud->getFirstName()){
 			secondaryListStudent.erase(secondaryListStudent.begin() + i);
 		}
+	}
+}
+
+void Lesson::setValidate(int validate) { 
+	this->validate = validate; 
+		
+	string path = "C:/Users/Public/"+this->getName()+"readme.txt";
+	std::ofstream file(path.c_str(), ios::out | ios::app);
+	if (file){
+		file.close();
+	}
+	else {
+
+	}
+	
+	string pathLesson = "C:/Users/Public/lessons.txt";
+	string buffer;
+	std::ifstream file2(pathLesson.c_str(), ios::in);
+	if (file2){ // if file exists
+		string line;
+		while (getline(file2, line)){
+			istringstream iss(line); // creat a separator for line
+			string name, teacher, strNbrMax , boole;
+			iss >> name >> teacher >> strNbrMax >> boole;
+			if (!(this->getName() == name)){
+				buffer += name + " " + teacher + " " + strNbrMax + '\n';
+			}
+			else {
+				buffer += name + " " + teacher + " " + strNbrMax + " 1" + '\n';
+			}
+		}
+		file2.close(); //close the file
+	}
+
+	std::ofstream file3(pathLesson.c_str(), ios::out);
+	if (file3){ // if file exists
+		file3 << buffer;
+		file3.close(); //close the file
+	}
+	else {
+
 	}
 }
