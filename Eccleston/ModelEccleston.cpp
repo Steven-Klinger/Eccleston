@@ -4,12 +4,16 @@
 #include <string>
 #include <sstream>
 #include <stdio.h> 
+#include <windows.h>
+
+const string path = "C:/Users/Public/Eccleston";
+
 ModelEccleston::ModelEccleston()
 {
-	// fill the list of users with data in users.txt file
-	
-	string pathStu = "C:/Users/Public/students~.txt";
-	string pathStuOld = "C:/Users/Public/students.txt";
+	CreateDirectory((LPCSTR)path.c_str(), NULL);
+
+	string pathStu = path + "/students~.txt";
+	string pathStuOld = path + "/students.txt";
 	rename(pathStuOld.c_str(), pathStu.c_str());
 	remove(pathStuOld.c_str());
 	std::ifstream file(pathStu.c_str(), ios::in);
@@ -27,8 +31,8 @@ ModelEccleston::ModelEccleston()
 		file.close();
 	}
 	remove(pathStu.c_str());
-	string pathAd = "C:/Users/Public/admins~.txt";
-	string pathAdOld = "C:/Users/Public/admins.txt";
+	string pathAd = path + "/admins~.txt";
+	string pathAdOld = path + "/admins.txt";
 	rename(pathAdOld.c_str(), pathAd.c_str());
 	remove(pathAdOld.c_str());
 	std::ifstream file2(pathAd.c_str(), ios::in);
@@ -46,8 +50,8 @@ ModelEccleston::ModelEccleston()
 		file2.close();
 	}
 	remove(pathAd.c_str());
-	string pathTeacher = "C:/Users/Public/teachers~.txt";
-	string pathTeacherOld = "C:/Users/Public/teachers.txt";
+	string pathTeacher = path + "/teachers~.txt";
+	string pathTeacherOld = path + "/teachers.txt";
 	rename(pathTeacherOld.c_str(), pathTeacher.c_str());
 	remove(pathTeacherOld.c_str());
 	std::ifstream file3(pathTeacher.c_str(), ios::in);
@@ -65,8 +69,8 @@ ModelEccleston::ModelEccleston()
 		file3.close();
 	}
 	remove(pathTeacher.c_str());
-	string pathLesson = "C:/Users/Public/lessons~.txt";
-	string pathLessonOld = "C:/Users/Public/lessons.txt";
+	string pathLesson = path + "/lessons~.txt";
+	string pathLessonOld = path + "/lessons.txt";
 	rename(pathLessonOld.c_str(), pathLesson.c_str());
 	remove(pathLessonOld.c_str());
 	std::ifstream file4(pathLesson.c_str(), ios::in);
@@ -74,11 +78,9 @@ ModelEccleston::ModelEccleston()
 		string line;
 		while (getline(file4, line)){
 			istringstream iss(line); // creat a separator for line
-			string name, teacherLog, strNbrMax, strValidated;
+			string name, teacherLog;
 			int nbrMax, validated;
 			iss >> name >> teacherLog >> nbrMax >> validated;
-			nbrMax = atoi(strNbrMax.c_str());
-			validated = atoi(strValidated.c_str());
 			if (this->checkLesson(name)){
 				Teacher* teacher = this->getTeacherByLogin(teacherLog);
 				if (teacher != NULL){
@@ -102,8 +104,8 @@ ModelEccleston::~ModelEccleston()
 void ModelEccleston::addLesson(Lesson* lesson){
 	if (this->checkLesson(lesson->getName())){
 		listLessons.push_back(lesson);
-		string path = "C:/Users/Public/lessons.txt";
-		std::ofstream file(path.c_str(), ios::out | ios::app);
+		string name = path + "/lessons.txt";
+		std::ofstream file(name.c_str(), ios::out | ios::app);
 		if (file){
 			string  name, teacher;
 			int nbrMax, validates;
@@ -123,8 +125,8 @@ void ModelEccleston::addLesson(Lesson* lesson){
 void ModelEccleston::addUser(Admin* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listAdmin.push_back(user);
-		string path = "C:/Users/Public/admins.txt";
-		std::ofstream file(path.c_str(), ios::out | ios::app);
+		string name = path + "/admins.txt";
+		std::ofstream file(name.c_str(), ios::out | ios::app);
 		if (file){
 			cout << "insertion fichier admins.txt ok" << endl;
 			string firstName, name, login, password, eMail;
@@ -145,8 +147,8 @@ void ModelEccleston::addUser(Admin* user){
 void ModelEccleston::addUser(Teacher* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listTeacher.push_back(user);
-		string path = "C:/Users/Public/teachers.txt";
-		std::ofstream file(path.c_str(), ios::out | ios::app);
+		string name = path + "/teachers.txt";
+		std::ofstream file(name.c_str(), ios::out | ios::app);
 		if (file){
 			cout << "insertion fichier teachers.txt ok" << endl;
 			string firstName, name, login, password, eMail;
@@ -167,8 +169,8 @@ void ModelEccleston::addUser(Teacher* user){
 void ModelEccleston::addUser(Student* user){
 	if (this->checkLoginAvailable(user->getLogin())){
 		listStudent.push_back(user);
-		string path = "C:/Users/Public/students.txt";
-		std::ofstream file(path.c_str(), ios::out | ios::app);
+		string name = path + "/students.txt";
+		std::ofstream file(name.c_str(), ios::out | ios::app);
 		if (file){
 			cout << "insertion fichier teachers.txt ok" << endl;
 			string firstName, name, login, password, eMail;
@@ -331,7 +333,7 @@ void ModelEccleston::removeLesson(Lesson* lesson){
 			}
 		}
 	}
-	string pathStu = "C:/Users/Public/lessons.txt";
+	string pathStu = path + "/lessons.txt";
 	string buffer;
 	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){ // if file exists
@@ -368,7 +370,7 @@ void ModelEccleston::removeUser(Admin* user){
 			}
 		}
 	}
-	string pathStu = "C:/Users/Public/admins.txt";
+	string pathStu = path + "/admins.txt";
 	string buffer;
 	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){ // if file exists
@@ -405,7 +407,7 @@ void ModelEccleston::removeUser(Teacher* user){
 			}
 		}
 	}
-	string pathStu = "C:/Users/Public/teachers.txt";
+	string pathStu = path + "/teachers.txt";
 	string buffer;
 	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){ // if file exists
@@ -442,7 +444,7 @@ void ModelEccleston::removeUser(Student* user){
 			}
 		}
 	}
-	string pathStu = "C:/Users/Public/students.txt";
+	string pathStu = path + "/students.txt";
 	string buffer;
 	std::ifstream file(pathStu.c_str(), ios::in);
 	if (file){ // if file exists

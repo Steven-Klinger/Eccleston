@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdio.h>
+#include <Windows.h>
 
 #include "ResourceFile.h"
 #include "Teacher.h"
@@ -153,7 +154,8 @@ void Lesson::removeStudentSecondaryList(Student* oldStud) {
 void Lesson::setValidate(int validate) { 
 	this->validate = validate; 
 	if (validate == 1){
-		string path = "C:/Users/Public/" + this->getName() + "readme.txt";
+		string path = "C:/Users/Public/Eccleston/" + this->getName();
+		CreateDirectory((LPCSTR)path.c_str(), NULL);
 		std::ofstream file(path.c_str(), ios::out | ios::app);
 		if (file){
 			file.close();
@@ -162,7 +164,7 @@ void Lesson::setValidate(int validate) {
 
 		}
 
-		string pathLesson = "C:/Users/Public/lessons.txt";
+		string pathLesson = "C:/Users/Public/Eccleston/lessons.txt";
 		string buffer;
 		std::ifstream file2(pathLesson.c_str(), ios::in);
 		if (file2){ // if file exists
