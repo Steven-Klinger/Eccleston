@@ -1,5 +1,3 @@
-//{{NO_DEPENDENCIES}}
-// Fichier Include généré de Microsoft Visual C++.
 // Utilisé par projResource.rc
 //
 #define IDD_CONNEXION                   101

@@ -103,7 +103,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 																				SendDlgItemMessage(hwnd, IDC_LIST_LESSON, LB_SETITEMDATA, (WPARAM)index, (LPARAM)1);
 																				}
 																				*/
-
+									  break;
 						  }
 						  case 2: {
 									  Student* student = model->getCurrentStudent();
@@ -298,11 +298,11 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 												MessageBox(hwnd, "Le champ eMail n'est pas remplit", "Erreur", MB_OK);
 											}
 											string login;
-											len = GetWindowTextLength(GetDlgItem(hwnd, IDC_EDIT_LOGIN));
+											len = GetWindowTextLength(GetDlgItem(hwnd, IDC_EDIT_ADDUSER_LOGIN));
 											if (len > 0) {
 												char* buf;
 												buf = (char*)GlobalAlloc(GPTR, len + 1);
-												GetDlgItemText(hwnd, IDC_EDIT_LOGIN, buf, len + 1);
+												GetDlgItemText(hwnd, IDC_EDIT_ADDUSER_LOGIN, buf, len + 1);
 												login = buf;
 												GlobalFree((HANDLE)buf);
 											}
@@ -564,7 +564,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	model = new ModelEccleston();
 
 	Admin* Raphael = new Admin("Merkling", "Raphael", "Desmero", "aze", "plop@mail.fr", model);
-	Teacher* Erwan = new Teacher("Mellinger", "Erwan", "Erwan", "aze", "mel@mail.com", model);
+/*	Teacher* Erwan = new Teacher("Mellinger", "Erwan", "Erwan", "aze", "mel@mail.com", model);
 	Student* Steven = new Student("Steven", "Klinger", "PhantomD", "aze", "kli@mail.de", model);
 	Student* Nicolas = new Student("Anduze", "Nicolas", "Mandra", "aze", "and@mail.net", model);
 
@@ -575,15 +575,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	Nicolas->addLesson(toucan);
 	Steven->addLesson(CPOA);
-
+*/
 	model->addUser(Raphael);
-	model->addUser(Erwan);
+/*	model->addUser(Erwan);
 	model->addUser(Steven);
 	model->addUser(Nicolas);
 
 	model->addLesson(CPOA);
 	model->addLesson(Algo);
 	model->addLesson(toucan);
-
+*/
 	return DialogBox(hInstance, MAKEINTRESOURCE(IDD_CONNEXION), NULL, DlgProc);
 }
