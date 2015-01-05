@@ -11,6 +11,7 @@
 #define IDD_ADDLESSON					123
 #define IDD_MAIN_STUDENT                131
 #define IDD_LESSON_STUDENT              132
+#define IDD_STUDENT_INS					133
 #define IDC_EDIT_LOGIN                  1001
 #define IDC_EDIT_PASSW                  1002
 #define IDC_BUTTON_CONNECT              1003
@@ -47,6 +48,9 @@
 #define IDC_EDIT_ADDLESSON_DATEEND_MON	1208
 #define IDC_EDIT_ADDLESSON_DATEEND_YEA	1209
 #define IDC_BUTTON_ADDLESSON_VALIDATE	1210
+#define IDC_BUTTON_STUDENT_INS			1301
+#define IDC_LIST_OPENLESSON				1302
+#define IDC_BUTTON_STUDENT_INS_VALID	1303
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

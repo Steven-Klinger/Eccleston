@@ -104,7 +104,6 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 																				}
 																				*/
 
-									  break;
 						  }
 						  case 2: {
 									  Student* student = model->getCurrentStudent();
@@ -534,6 +533,12 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
 												  PostMessage(hwnd, WM_CLOSE, 0, 0);
 											  }
 											  break;
+		}
+		case IDC_BUTTON_STUDENT_INS:
+		{
+									   PostMessage(hwnd, WM_CLOSE, 0, 0);
+									   return DialogBox(hInst, MAKEINTRESOURCE(IDD_STUDENT_INS), NULL, DlgProc);
+									   break;
 		}
 		case IDC_BUTTON_DECONNECT:
 			PostMessage(hwnd, WM_CLOSE, 0, 0);

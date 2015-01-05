@@ -204,7 +204,7 @@ void Lesson::setValidate(int validate) {
 				string name, teacher, strNbrMax, boole;
 				iss >> name >> teacher >> strNbrMax >> boole;
 				if (!(this->getName() == name)){
-					buffer += name + " " + teacher + " " + strNbrMax + '\n';
+					buffer += name + " " + teacher + " " + strNbrMax + " " + boole + '\n';
 				}
 				else {
 					buffer += name + " " + teacher + " " + strNbrMax + " 1" + '\n';
