@@ -152,41 +152,42 @@ void Lesson::removeStudentSecondaryList(Student* oldStud) {
 
 void Lesson::setValidate(int validate) { 
 	this->validate = validate; 
-		
-	string path = "C:/Users/Public/"+this->getName()+"readme.txt";
-	std::ofstream file(path.c_str(), ios::out | ios::app);
-	if (file){
-		file.close();
-	}
-	else {
-
-	}
-	
-	string pathLesson = "C:/Users/Public/lessons.txt";
-	string buffer;
-	std::ifstream file2(pathLesson.c_str(), ios::in);
-	if (file2){ // if file exists
-		string line;
-		while (getline(file2, line)){
-			istringstream iss(line); // creat a separator for line
-			string name, teacher, strNbrMax , boole;
-			iss >> name >> teacher >> strNbrMax >> boole;
-			if (!(this->getName() == name)){
-				buffer += name + " " + teacher + " " + strNbrMax + '\n';
-			}
-			else {
-				buffer += name + " " + teacher + " " + strNbrMax + " 1" + '\n';
-			}
+	if (validate == 1){
+		string path = "C:/Users/Public/" + this->getName() + "readme.txt";
+		std::ofstream file(path.c_str(), ios::out | ios::app);
+		if (file){
+			file.close();
 		}
-		file2.close(); //close the file
-	}
+		else {
 
-	std::ofstream file3(pathLesson.c_str(), ios::out);
-	if (file3){ // if file exists
-		file3 << buffer;
-		file3.close(); //close the file
-	}
-	else {
+		}
 
+		string pathLesson = "C:/Users/Public/lessons.txt";
+		string buffer;
+		std::ifstream file2(pathLesson.c_str(), ios::in);
+		if (file2){ // if file exists
+			string line;
+			while (getline(file2, line)){
+				istringstream iss(line); // creat a separator for line
+				string name, teacher, strNbrMax, boole;
+				iss >> name >> teacher >> strNbrMax >> boole;
+				if (!(this->getName() == name)){
+					buffer += name + " " + teacher + " " + strNbrMax + '\n';
+				}
+				else {
+					buffer += name + " " + teacher + " " + strNbrMax + " 1" + '\n';
+				}
+			}
+			file2.close(); //close the file
+		}
+
+		std::ofstream file3(pathLesson.c_str(), ios::out);
+		if (file3){ // if file exists
+			file3 << buffer;
+			file3.close(); //close the file
+		}
+		else {
+
+		}
 	}
 }
